@@ -3,11 +3,11 @@ class Crop:
         self.crecimiento_actual = 0
     def tipo_cultivo(self):
         print("///Tipos de cultivos///")
-        print("1. cultivo 1")
-        print("2. cultivo 2")
-        print("3. cultivo 3")
-        print("4. cultivo 4")
-        print("5. cultivo 5")
+        print("1. Manzana") #Apple
+        print("2. Sandía") #Watermelon
+        print("3. Zanahoria") #Carrot
+        print("4. Trigo") #Wheat
+        print("5. Maíz") #Corn
         self.nombre = input("Ingrese el tipo de cultivo que quiere sembrar: ")
         
 class Suelo:
