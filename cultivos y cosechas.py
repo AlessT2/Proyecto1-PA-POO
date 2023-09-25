@@ -22,6 +22,15 @@ class Crop:
         
         elif self.crecimiento_actual >= 100:
             print("Maduración")
+    #fertilizacion        
+    def fertilizacion(self):
+        self.crecimiento_actual + 50
+    #cosechar    
+    def cosechar(self):
+        if self.crecimiento_actual >= 100:
+            print("Cosechado")
+        else:
+            return print("Aún no está listo para cosechar")
             
 class Suelo:
     def __init__(self):
