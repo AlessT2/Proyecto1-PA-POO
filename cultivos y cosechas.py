@@ -73,7 +73,14 @@ class Menu:
         while opcion != 4:
             if opcion == 1:
                 self.crear_cultivo()
-
+            elif opcion == 2:
+                posicion = int(input("Introduce la posición del cultivo que quieres regar: "))
+                suelo.regarC(posicion)
+        
+            elif opcion == 3:
+                posicion = int(input("Introduce la posición del cultivo que quieres cosechar: "))
+                suelo.cosecharC(posicion)
+                Crop.etapas()
             else:
                 print("Opción no válida")
             print("///MENÚ///")
