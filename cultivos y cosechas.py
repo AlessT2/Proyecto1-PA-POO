@@ -9,7 +9,20 @@ class Crop:
         print("4. Trigo") #Wheat
         print("5. Maíz") #Corn
         self.nombre = input("Ingrese el tipo de cultivo que quiere sembrar: ")
+    #regar   
+    def regar(self):
+        self.crecimiento_actual + 20
+    #etapas    
+    def etapas(self):
+        if 0 <= self.crecimiento_actual >= 40:
+            print("Brote")
+            
+        elif 40 < self.crecimiento_actual > 100:
+            print("Crecimiento")
         
+        elif self.crecimiento_actual >= 100:
+            print("Maduración")
+            
 class Suelo:
     def __init__(self):
         self.cultivos = []
