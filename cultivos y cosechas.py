@@ -1,14 +1,6 @@
 class Crop:
     def __init__(self):
         self.crecimiento_actual = 0
-    def tipo_cultivo(self):
-        print("///Tipos de cultivos///")
-        print("1. Manzana") #Apple
-        print("2. Sandía") #Watermelon
-        print("3. Zanahoria") #Carrot
-        print("4. Trigo") #Wheat
-        print("5. Maíz") #Corn
-        self.nombre = input("Ingrese el tipo de cultivo que quiere sembrar: ")
     #regar   
     def regar(self):
         self.crecimiento_actual + 20
@@ -31,7 +23,27 @@ class Crop:
             print("Cosechado")
         else:
             return print("Aún no está listo para cosechar")
-            
+         
+class Apple(Crop):
+    def __init__(self):
+        super().__init__()
+
+class Watermelon(Crop):
+    def __init__(self):
+        super().__init__()
+
+class Carrot(Crop):
+    def __init__(self):
+        super().__init__()
+
+class Wheat(Crop):
+    def __init__(self):
+        super().__init__()
+
+class Corn(Crop):
+    def __init__(self):
+        super().__init__()
+   
 class Suelo:
     def __init__(self):
         self.cultivos = []
@@ -74,10 +86,17 @@ class Menu:
 
         print("Saliendo del programa")
         
+    def tipo_cultivo(self):
+        print("///Tipos de cultivos///")
+        print("1. Manzana") #Apple
+        print("2. Sandía") #Watermelon
+        print("3. Zanahoria") #Carrot
+        print("4. Trigo") #Wheat
+        print("5. Maíz") #Corn
+        self.nombre = input("Ingrese el tipo de cultivo que quiere sembrar: ")
+    
     def crear_cultivo(self):
-        crop1 = Crop()
-        crop1.tipo_cultivo()
-    
-    
+        menu1.tipo_cultivo()
+
 menu1 = Menu()
 menu1.menu()
