@@ -56,6 +56,30 @@ class Pigs(AnimalCare):
         self.meat = int(input("Ingrese cuantas libras de carne puede generar su cerdo: "))
         self.fur = int(input("Ingrese cuantas m^2 de piel puede generar su cerdo: "))
 
+    def collect_resources(self):
+        print("Recursos disponibles: ")
+        print("1. Su animal tiene ",self.breeding," crias")
+        print("2. Su animal ha producido ",self.milk," litros de leche")
+        print("3. Su animal puede generar ",self.meat," libras de carne")
+        print("4. Su animal puede gener",self.fur," metros^2 de piel")
+        collect = int(input("Ingrese que desea recoger: "))
+        if collect == 1:
+            collet_breeding = int(input("Ingrese cuantas crias desea recoger: "))
+            self.breeding -= collet_breeding
+            print("Ahora tiene ",self.breeding," crias")
+        elif collect == 2:
+            collect_milk = int(input("Ingrese cuantos litros de leche desea recoger: "))
+            self.milk -= collect_milk
+            print("Ahora tiene ",self.milk," litros de leche disponibles")
+        elif collect == 3:
+            collect_meat = int(input("Ingrese cuentas libras de carne desea recoger: "))
+            self.meat -= collect_meat
+            print("Ahora tiene ",self.meat," libras de carne disponibles")
+        elif collect == 4:
+            collect_fur = int(input("Ingrese cuantos metros^2 de piel desea recoger: "))
+            self.fur -= collect_fur
+            print("Ahora tiene ",self.fur," metros^2 de piel disponibles")
+
 class Cows(AnimalCare):
     def __init__(self, healt=50, happiness=50, hunger=50, breeding=0, milk=0, meat=0, fur=0, horns=0):
         super().__init__(healt, happiness, hunger, breeding, milk)
@@ -71,6 +95,36 @@ class Cows(AnimalCare):
         self.milk = int(input("Ingrese cuantos litros de leche ha producido su vaca: "))
         self.meat = int(input("Ingrese cuantas libras de carne puede generar su vaca: "))
         self.fur = int(input("Ingrese cuantas m^2 de piel puede generar su vaca: "))
+        self.horns = int(input("Ingrese cuantos cuernos de vaca tiene: "))
+
+    def collect_resources(self):
+        print("Recursos disponibles: ")
+        print("1. Su animal tiene ",self.breeding," crias")
+        print("2. Su animal ha producido ",self.milk," litros de leche")
+        print("3. Su animal puede generar ",self.meat," libras de carne")
+        print("4. Su animal puede gener",self.fur," metros^2 de piel")
+        print("5. Tiene en posecion ",self.horns," cuernos")
+        collect = int(input("Ingrese que desea recoger: "))
+        if collect == 1:
+            collet_breeding = int(input("Ingrese cuantas crias desea recoger: "))
+            self.breeding -= collet_breeding
+            print("Ahora tiene ",self.breeding," crias")
+        elif collect == 2:
+            collect_milk = int(input("Ingrese cuantos litros de leche desea recoger: "))
+            self.milk -= collect_milk
+            print("Ahora tiene ",self.milk," litros de leche disponibles")
+        elif collect == 3:
+            collect_meat = int(input("Ingrese cuentas libras de carne desea recoger: "))
+            self.meat -= collect_meat
+            print("Ahora tiene ",self.meat," libras de carne disponibles")
+        elif collect == 4:
+            collect_fur = int(input("Ingrese cuantos metros^2 de piel desea recoger: "))
+            self.fur -= collect_fur
+            print("Ahora tiene ",self.fur," metros^2 de piel disponivles ")
+        elif collect == 5:
+            collect_horns = int(input("Ingrese cuantos cuernos desea recoger: "))
+            self.horns -= collect_horns
+            print("Ahora tiene ",self.horns," cuenros a disposicion")
 
 class Sheep(AnimalCare):
     def __init__(self, healt=50, happiness=50, hunger=50, breeding=0, milk=0, meat=0, wool=0):
@@ -85,7 +139,36 @@ class Sheep(AnimalCare):
         self.breeding = int(input("Ingrese cuantas crias ha tenido su oveja: "))
         self.milk = int(input("Ingrese cuantos litros de leche ha producido su oveja: "))
         self.meat = int(input("Ingrese cuantas libras de carne puede generar su oveja: "))
-        self.fur = int(input("Ingrese en micras el grosor de la piel de la oveja: "))
+        self.fur = int(input("Ingrese la cantidad de libras de lana que puede generar su oveja "))
+
+    def collect_resources(self):
+        print("Recursos disponibles: ")
+        print("1. Su animal tiene ",self.breeding," crias")
+        print("2. Su animal ha producido ",self.milk," litros de leche")
+        print("3. Su animal puede generar ",self.meat," libras de carne")
+        print("4. Su animal puede gener",self.fur," metros^2 de piel")
+        print("5. Tiene en posecion ",self.wool," libras de lana")
+        collect = int(input("Ingrese que desea recoger: "))
+        if collect == 1:
+            collet_breeding = int(input("Ingrese cuantas crias desea recoger: "))
+            self.breeding -= collet_breeding
+            print("Ahora tiene ",self.breeding," crias")
+        elif collect == 2:
+            collect_milk = int(input("Ingrese cuantos litros de leche desea recoger: "))
+            self.milk -= collect_milk
+            print("Ahora tiene ",self.milk," litros de leche disponibles")
+        elif collect == 3:
+            collect_meat = int(input("Ingrese cuentas libras de carne desea recoger: "))
+            self.meat -= collect_meat
+            print("Ahora tiene ",self.meat," libras de carne disponibles")
+        elif collect == 4:
+            collect_fur = int(input("Ingrese cuantos metros^2 de piel desea recoger: "))
+            self.fur -= collect_fur
+            print("Ahora tiene ",self.fur," metros^2 de piel disponivles ")
+        elif collect == 5:
+            collect_wool = int(input("Ingrese cuantas libras de lana desea recoger: "))
+            self.wool -= collect_wool
+            print("Ahora tiene ",self.wool," libras de lana disponibles")
 
 print("Animales  :)")
 print("1. Ingreso de animales")
@@ -161,5 +244,8 @@ while act_entry >= 1 and act_entry <= 2:
             print("3. Ovejas")
             animal = int(input("Ingrese de que animal desea recolectar recursos: "))
             if animal == 1:
-                print("Recursos a recolectar de los cerdos: ")
-
+                pig1.collect_resources()
+            if animal == 2:
+                cow1.collect_resources()
+            if animal == 3:
+                sheep1.collect_resources()
