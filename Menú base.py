@@ -284,8 +284,8 @@ while True:
                             print("\033[1;38;2;255;54;0mSaliendo de la Tienda...\033[0m\n")
                             break
                 break
-            while opcionE == "B" or opcionE == "b":
-                if opcionE == "B" or opcionE == "b":
+            while optionE == "B" or optionE == "b":
+                if optionE == "B" or optionE == "b":
                     print("")
                 break
         continue_end = input("\033[1;38;2;218;206;35m¿Desea regresar al menú de inicio?\033[0;m\n" + "\033[1;32mS\033[0;m" + "/" + "\033[1;31mN: \033[0;m")
