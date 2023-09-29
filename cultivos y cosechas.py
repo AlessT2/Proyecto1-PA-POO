@@ -78,6 +78,16 @@ class Menu:
         print("4. Trigo") #Wheat
         print("5. Maíz") #Corn    
 
+    def mostrar_cultivos(self):
+        if len(self.suelo.cultivos) == 0:
+            print("No hay cultivos en el suelo.")
+        else:
+            print("Cultivos en el suelo:")
+            posicion = 0
+            for cultivo in self.suelo.cultivos:
+                print(posicion, ".", cultivo.nombre, "- Estado:", cultivo.estado)
+                posicion += 1
+
     def menu(self):
         print("///MENÚ///")
         print("Bienvenido al sistema de cultivo.")
@@ -88,7 +98,8 @@ class Menu:
         print("5. Mostrar estado de cultivos")
         print("6. Salir")
         opcion = int(input("Ingrese su opción: "))
-        while opcion != 4:
+        while opcion != 6:
+            
             if opcion == 1:
                 self.tipo_cultivo()
                 tipo = int(input("Ingrese el número del tipo de cultivo que desea sembrar: "))
@@ -108,6 +119,7 @@ class Menu:
                     print("Has plantado un/una", cultivo.nombre)
                 else:
                     print("Opción no válida.")
+                    
             elif opcion == 2:
                 if len(self.suelo.cultivos) == 0:
                     print("No hay cultivos para regar.")
@@ -131,7 +143,8 @@ class Menu:
                         print("Ha fertilizado el cultivo en la posición ", posicion)
                     else:
                         print("Posición no válida.")
-            elif opcion == "4":
+                        
+            elif opcion == 4:
                 if len(self.suelo.cultivos) == 0:
                     print("No hay cultivos para cosechar.")
                 else:
@@ -145,6 +158,9 @@ class Menu:
                             print("El cultivo no está listo para cosechar.")
                     else:
                         print("Posición no válida.")
+                        
+            elif opcion == 5:
+                self.mostrar_cultivos()
 
             else:
                 print("Opción no válida")
