@@ -50,25 +50,62 @@ class Menu:
     def __init__(self):
         self.suelo = Suelo()
         
+    def tipo_cultivo(self):
+        print("///Tipos de cultivos///")
+        print("1. Manzana") #Apple
+        print("2. Sandía") #Watermelon
+        print("3. Zanahoria") #Carrot
+        print("4. Trigo") #Wheat
+        print("5. Maíz") #Corn    
+
     def menu(self):
         print("///MENÚ///")
-        print("Bienvenido al sistema de cultivo. Por favor, selecciona una opción:")
+        print("Bienvenido al sistema de cultivo.")
         print("1. Plantar un nuevo cultivo")
         print("2. Regar un cultivo")
-        print("3. Cosechar un cultivo")
-        print("4. Salir")
+        print("3. Fertilizar un cultivo")
+        print("4. Cosechar un cultivo")
+        print("5. Mostrar estado de cultivos")
+        print("6. Salir")
         opcion = int(input("Ingrese su opción: "))
         while opcion != 4:
             if opcion == 1:
-                self.crear_cultivo()
+                self.tipo_cultivo()
+                tipo = int(input("Ingrese el número del tipo de cultivo que desea sembrar: "))
+                if 1 <= tipo <= 5:
+                    if tipo == 1:
+                        nombre_cultivo = "Manzana"
+                        cultivo = Crop(nombre_cultivo)
+                        self.suelo.plantar(cultivo)
+                        print("Has plantado un/una", cultivo.nombre)
+                    elif tipo == 2:
+                        nombre_cultivo = "Sandía"
+                        cultivo = Crop(nombre_cultivo)
+                        self.suelo.plantar(cultivo)
+                        print("Has plantado un/una", cultivo.nombre)
+                    elif tipo == 3:
+                        nombre_cultivo = "Zanahoria"
+                        cultivo = Crop(nombre_cultivo)
+                        self.suelo.plantar(cultivo)
+                        print("Has plantado un/una", cultivo.nombre)
+                    elif tipo == 4:
+                        nombre_cultivo = "Trigo"
+                        cultivo = Crop(nombre_cultivo)
+                        self.suelo.plantar(cultivo)
+                        print("Has plantado un/una", cultivo.nombre)
+                    elif tipo == 5:
+                        nombre_cultivo = "Maíz"
+                        cultivo = Crop(nombre_cultivo)
+                        self.suelo.plantar(cultivo)
+                        print("Has plantado un/una", cultivo.nombre)
+                else:
+                    print("Opción no válida.")
             elif opcion == 2:
                 posicion = int(input("Introduce la posición del cultivo que quieres regar: "))
-                suelo.regarC(posicion)
         
             elif opcion == 3:
                 posicion = int(input("Introduce la posición del cultivo que quieres cosechar: "))
-                suelo.cosecharC(posicion)
-                Crop.etapas()
+
             else:
                 print("Opción no válida")
             print("///MENÚ///")
@@ -81,17 +118,6 @@ class Menu:
 
         print("Saliendo del programa")
         
-    def tipo_cultivo(self):
-        print("///Tipos de cultivos///")
-        print("1. Manzana") #Apple
-        print("2. Sandía") #Watermelon
-        print("3. Zanahoria") #Carrot
-        print("4. Trigo") #Wheat
-        print("5. Maíz") #Corn
-        self.nombre = input("Ingrese el tipo de cultivo que quiere sembrar: ")
     
-    def crear_cultivo(self):
-        menu1.tipo_cultivo()
-
 menu1 = Menu()
 menu1.menu()
