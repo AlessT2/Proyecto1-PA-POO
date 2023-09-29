@@ -1,92 +1,99 @@
 class Crop:
-    def __init__(self, nombre):
-        self.nombre = nombre
-        self.crecimiento_actual = 0
-        self.estado = "Brote"
-    #regar
-    def regar(self):
-        self.crecimiento_actual += 20
-        if self.crecimiento_actual <= 40:
-            self.estado = "Brote"
-        elif 40 < self.crecimiento_actual < 100:
-            self.estado = "Crecimiento"
-        elif self.crecimiento_actual >= 100:
-            self.estado = "Maduración"
-    #fertilizar
-    def fertilizar(self):
-        self.crecimiento_actual += 50
-        if self.crecimiento_actual <= 40:
-            self.estado = "Brote"
-        elif 40 < self.crecimiento_actual < 100:
-            self.estado = "Crecimiento"
-        elif self.crecimiento_actual >= 100:
-            self.estado = "Maduración"
-    #cosechar
-    def cosechar(self):
-        if self.crecimiento_actual >= 100:
-            self.estado = "Cosechado"
+    def __init__(self, name):
+        self.name = name
+        self.current_growth = 0
+        self.state = "Brote"
+
+    # Regar (Water)
+    def water(self):
+        self.current_growth += 20
+        if self.current_growth <= 40:
+            self.state = "Brote"
+        elif 40 < self.current_growth < 100:
+            self.state = "Crecimiento"
+        elif self.current_growth >= 100:
+            self.state = "Maduración"
+
+    # Fertilizar (Fertilize)
+    def fertilize(self):
+        self.current_growth += 50
+        if self.current_growth <= 40:
+            self.state = "Brote"
+        elif 40 < self.current_growth < 100:
+            self.state = "Crecimiento"
+        elif self.current_growth >= 100:
+            self.state = "Maduración"
+
+    # Cosechar (Harvest)
+    def harvest(self):
+        if self.current_growth >= 100:
+            self.state = "Cosechado"
             return True
         else:
-            self.estado = "Aún no está listo para cosechar"
+            self.state = "Aún no está listo para cosechar"
             return False
 
-class Manzana(Crop):
+class Apple(Crop):
     def __init__(self):
         super().__init__("Manzana")
 
-class Sandia(Crop):
+class Watermelon(Crop):
     def __init__(self):
         super().__init__("Sandía")
 
-class Zanahoria(Crop):
+class Carrot(Crop):
     def __init__(self):
         super().__init__("Zanahoria")
 
-class Trigo(Crop):
+class Wheat(Crop):
     def __init__(self):
         super().__init__("Trigo")
 
-class Maiz(Crop):
+class Corn(Crop):
     def __init__(self):
         super().__init__("Maíz")
-   
-class Suelo:
+
+class Soil:
     def __init__(self):
-        self.cultivos = []
-    #plantarSuelo    
-    def plantar(self, cultivo):
-        self.cultivos.append(cultivo)
-    #regarSuelo    
-    def regarC(self, posicion):
-        self.cultivos[posicion].regar()
-    #fertilizarSuelo
-    def fertilizarC(self, posicion):
-        self.cultivos[posicion].fertilizar()    
-    #cosecharSuelo    
-    def cosecharC(self, posicion):
-        return self.cultivos[posicion].cosechar()
+        self.crops = []
+
+    # Plantar en suelo (Plant in soil)
+    def plant(self, crop):
+        self.crops.append(crop)
+
+    # Regar en suelo (Water in soil)
+    def water_crop(self, position):
+        self.crops[position].water()
+
+    # Fertilizar en suelo (Fertilize in soil)
+    def fertilize_crop(self, position):
+        self.crops[position].fertilize()
+
+    # Cosechar en suelo (Harvest in soil)
+    def harvest_crop(self, position):
+        return self.crops[position].harvest()
 
 class Menu:
     def __init__(self):
-        self.suelo = Suelo()
-        
-    def tipo_cultivo(self):
-        print("///Tipos de cultivos///")
-        print("1. Manzana") #Apple
-        print("2. Sandía") #Watermelon
-        print("3. Zanahoria") #Carrot
-        print("4. Trigo") #Wheat
-        print("5. Maíz") #Corn    
+        self.soil = Soil()
 
-    def mostrar_cultivos(self):
-        if len(self.suelo.cultivos) == 0:
+    def crop_type(self):
+        print("///Tipos de cultivos///")
+        print("1. Manzana")  # Apple
+        print("2. Sandía")  # Watermelon
+        print("3. Zanahoria")  # Carrot
+        print("4. Trigo")  # Wheat
+        print("5. Maíz")  # Corn
+
+    def show_crops(self):
+        if len(self.soil.crops) == 0:
             print("No hay cultivos en el suelo.")
         else:
-            print("Cultivos en el suelo:")
-            posicion = 0
-            for cultivo in self.suelo.cultivos:
-                print(posicion, ".", cultivo.nombre, "- Estado:", cultivo.estado)
-                posicion += 1
+            print("cultivos en el suelo:")
+            position = 0
+            for crop in self.soil.crops:
+                print(position, ".", crop.name, "- Estado:", crop.state)
+                position += 1
 
     def menu(self):
         print("///MENÚ///")
@@ -97,70 +104,70 @@ class Menu:
         print("4. Cosechar un cultivo")
         print("5. Mostrar estado de cultivos")
         print("6. Salir")
-        opcion = int(input("Ingrese su opción: "))
-        while opcion != 6:
-            
-            if opcion == 1:
-                self.tipo_cultivo()
-                tipo = int(input("Ingrese el número del tipo de cultivo que desea sembrar: "))
-                if 1 <= tipo <= 5:
-                    if tipo == 1:
-                        cultivo = Manzana()
-                    elif tipo == 2:
-                        cultivo = Sandia()
-                    elif tipo == 3:
-                        cultivo = Zanahoria()
-                    elif tipo == 4:
-                        cultivo = Trigo()
-                    elif tipo == 5:
-                        cultivo = Maiz()
-                    
-                    self.suelo.plantar(cultivo)
-                    print("Has plantado un/una", cultivo.nombre)
+        option = int(input("Ingrese su opción: "))
+        while option != 6:
+
+            if option == 1:
+                self.crop_type()
+                type_choice = int(input("Ingrese el número del tipo de cultivo que desea sembrar: "))
+                if 1 <= type_choice <= 5:
+                    if type_choice == 1:
+                        crop = Apple()
+                    elif type_choice == 2:
+                        crop = Watermelon()
+                    elif type_choice == 3:
+                        crop = Carrot()
+                    elif type_choice == 4:
+                        crop = Wheat()
+                    elif type_choice == 5:
+                        crop = Corn()
+
+                    self.soil.plant(crop)
+                    print("Has plantado un/una", crop.name)
                 else:
                     print("Opción no válida.")
-                    
-            elif opcion == 2:
-                if len(self.suelo.cultivos) == 0:
+
+            elif option == 2:
+                if len(self.soil.crops) == 0:
                     print("No hay cultivos para regar.")
                 else:
-                    self.mostrar_cultivos()
-                    posicion = int(input("Ingrese la posición del cultivo que desea regar: "))
-                    if 0 <= posicion < len(self.suelo.cultivos):
-                        self.suelo.regarC(posicion)
-                        print("Ha regado el cultivo en la posición ", posicion)
+                    self.show_crops()
+                    position = int(input("Ingrese la posición del cultivo que desea regar: "))
+                    if 0 <= position < len(self.soil.crops):
+                        self.soil.water_crop(position)
+                        print("Ha regado el cultivo en la posición ", position)
                     else:
                         print("Posición no válida.")
-        
-            elif opcion == 3:
-                if len(self.suelo.cultivos) == 0:
+
+            elif option == 3:
+                if len(self.soil.crops) == 0:
                     print("No hay cultivos para fertilizar.")
                 else:
-                    self.mostrar_cultivos()
-                    posicion = int(input("Ingrese la posición del cultivo que desea fertilizar: "))
-                    if 0 <= posicion < len(self.suelo.cultivos):
-                        self.suelo.fertilizarC(posicion)
-                        print("Ha fertilizado el cultivo en la posición ", posicion)
+                    self.show_crops()
+                    position = int(input("Ingrese la posición del cultivo que desea fertilizar: "))
+                    if 0 <= position < len(self.soil.crops):
+                        self.soil.fertilize_crop(position)
+                        print("Ha fertilizado el cultivo en la posición ", position)
                     else:
                         print("Posición no válida.")
-                        
-            elif opcion == 4:
-                if len(self.suelo.cultivos) == 0:
+
+            elif option == 4:
+                if len(self.soil.crops) == 0:
                     print("No hay cultivos para cosechar.")
                 else:
-                    self.mostrar_cultivos()
-                    posicion = int(input("Ingrese la posición del cultivo que desea cosechar: "))
-                    if 0 <= posicion < len(self.suelo.cultivos):
-                        if self.suelo.cosecharC(posicion):
-                            print("Ha cosechado el cultivo en la posición", posicion)
-                            del self.suelo.cultivos[posicion]
+                    self.show_crops()
+                    position = int(input("Ingrese la posición del cultivo que desea cosechar: "))
+                    if 0 <= position < len(self.soil.crops):
+                        if self.soil.harvest_crop(position):
+                            print("Ha cosechado el cultivo en la posición", position)
+                            del self.soil.crops[position]
                         else:
                             print("El cultivo no está listo para cosechar.")
                     else:
                         print("Posición no válida.")
-                        
-            elif opcion == 5:
-                self.mostrar_cultivos()
+
+            elif option == 5:
+                self.show_crops()
 
             else:
                 print("Opción no válida")
@@ -172,10 +179,9 @@ class Menu:
             print("4. Cosechar un cultivo")
             print("5. Mostrar estado de cultivos")
             print("6. Salir")
-            opcion = int(input("Ingrese su opción: "))
+            option = int(input("Ingrese su opción: "))
 
         print("Saliendo del programa")
-        
-    
+
 menu1 = Menu()
 menu1.menu()
