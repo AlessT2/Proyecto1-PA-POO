@@ -29,26 +29,6 @@ class Crop:
         else:
             self.estado = "Aún no está listo para cosechar"
             return False
-         
-class Apple(Crop):
-    def __init__(self):
-        super().__init__()
-
-class Watermelon(Crop):
-    def __init__(self):
-        super().__init__()
-
-class Carrot(Crop):
-    def __init__(self):
-        super().__init__()
-
-class Wheat(Crop):
-    def __init__(self):
-        super().__init__()
-
-class Corn(Crop):
-    def __init__(self):
-        super().__init__()
    
 class Suelo:
     def __init__(self):
@@ -59,14 +39,16 @@ class Suelo:
     #regarSuelo    
     def regarC(self, posicion):
         self.cultivos[posicion].regar()
+    #fertilizarSuelo
+    def fertilizarC(self, posicion):
+        self.cultivos[posicion].fertilizar()    
     #cosecharSuelo    
     def cosecharC(self, posicion):
-        self.cultivos[posicion].cosechar()
-suelo = Suelo()
+        return self.cultivos[posicion].cosechar()
 
 class Menu:
     def __init__(self):
-        self.inventario = []
+        self.suelo = Suelo()
         
     def menu(self):
         print("///MENÚ///")
