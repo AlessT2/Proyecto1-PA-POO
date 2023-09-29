@@ -3,26 +3,26 @@ class Crop:
         self.crecimiento_actual = 0
     #regar   
     def regar(self):
-        self.crecimiento_actual + 20
+        self.crecimiento_actual += 20
     #etapas    
     def etapas(self):
-        if 0 <= self.crecimiento_actual >= 40:
+        if 0 <= self.crecimiento_actual <= 40:
             print("Brote")
             
-        elif 40 < self.crecimiento_actual > 100:
+        elif 40 < self.crecimiento_actual < 100:
             print("Crecimiento")
         
         elif self.crecimiento_actual >= 100:
             print("Maduración")
     #fertilizacion        
     def fertilizacion(self):
-        self.crecimiento_actual + 50
+        self.crecimiento_actual += 50
     #cosechar    
     def cosechar(self):
         if self.crecimiento_actual >= 100:
-            print("Cosechado")
+            return "Cosechado"
         else:
-            return print("Aún no está listo para cosechar")
+            return "Aún no está listo para cosechar"
          
 class Apple(Crop):
     def __init__(self):
