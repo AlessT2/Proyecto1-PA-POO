@@ -29,6 +29,26 @@ class Crop:
         else:
             self.estado = "Aún no está listo para cosechar"
             return False
+
+class Manzana(Crop):
+    def __init__(self):
+        super().__init__("Manzana")
+
+class Sandia(Crop):
+    def __init__(self):
+        super().__init__("Sandía")
+
+class Zanahoria(Crop):
+    def __init__(self):
+        super().__init__("Zanahoria")
+
+class Trigo(Crop):
+    def __init__(self):
+        super().__init__("Trigo")
+
+class Maiz(Crop):
+    def __init__(self):
+        super().__init__("Maíz")
    
 class Suelo:
     def __init__(self):
@@ -74,46 +94,68 @@ class Menu:
                 tipo = int(input("Ingrese el número del tipo de cultivo que desea sembrar: "))
                 if 1 <= tipo <= 5:
                     if tipo == 1:
-                        nombre_cultivo = "Manzana"
-                        cultivo = Crop(nombre_cultivo)
-                        self.suelo.plantar(cultivo)
-                        print("Has plantado un/una", cultivo.nombre)
+                        cultivo = Manzana()
                     elif tipo == 2:
-                        nombre_cultivo = "Sandía"
-                        cultivo = Crop(nombre_cultivo)
-                        self.suelo.plantar(cultivo)
-                        print("Has plantado un/una", cultivo.nombre)
+                        cultivo = Sandia()
                     elif tipo == 3:
-                        nombre_cultivo = "Zanahoria"
-                        cultivo = Crop(nombre_cultivo)
-                        self.suelo.plantar(cultivo)
-                        print("Has plantado un/una", cultivo.nombre)
+                        cultivo = Zanahoria()
                     elif tipo == 4:
-                        nombre_cultivo = "Trigo"
-                        cultivo = Crop(nombre_cultivo)
-                        self.suelo.plantar(cultivo)
-                        print("Has plantado un/una", cultivo.nombre)
+                        cultivo = Trigo()
                     elif tipo == 5:
-                        nombre_cultivo = "Maíz"
-                        cultivo = Crop(nombre_cultivo)
-                        self.suelo.plantar(cultivo)
-                        print("Has plantado un/una", cultivo.nombre)
+                        cultivo = Maiz()
+                    
+                    self.suelo.plantar(cultivo)
+                    print("Has plantado un/una", cultivo.nombre)
                 else:
                     print("Opción no válida.")
             elif opcion == 2:
-                posicion = int(input("Introduce la posición del cultivo que quieres regar: "))
+                if len(self.suelo.cultivos) == 0:
+                    print("No hay cultivos para regar.")
+                else:
+                    self.mostrar_cultivos()
+                    posicion = int(input("Ingrese la posición del cultivo que desea regar: "))
+                    if 0 <= posicion < len(self.suelo.cultivos):
+                        self.suelo.regarC(posicion)
+                        print("Ha regado el cultivo en la posición ", posicion)
+                    else:
+                        print("Posición no válida.")
         
             elif opcion == 3:
-                posicion = int(input("Introduce la posición del cultivo que quieres cosechar: "))
+                if len(self.suelo.cultivos) == 0:
+                    print("No hay cultivos para fertilizar.")
+                else:
+                    self.mostrar_cultivos()
+                    posicion = int(input("Ingrese la posición del cultivo que desea fertilizar: "))
+                    if 0 <= posicion < len(self.suelo.cultivos):
+                        self.suelo.fertilizarC(posicion)
+                        print("Ha fertilizado el cultivo en la posición ", posicion)
+                    else:
+                        print("Posición no válida.")
+            elif opcion == "4":
+                if len(self.suelo.cultivos) == 0:
+                    print("No hay cultivos para cosechar.")
+                else:
+                    self.mostrar_cultivos()
+                    posicion = int(input("Ingrese la posición del cultivo que desea cosechar: "))
+                    if 0 <= posicion < len(self.suelo.cultivos):
+                        if self.suelo.cosecharC(posicion):
+                            print("Ha cosechado el cultivo en la posición", posicion)
+                            del self.suelo.cultivos[posicion]
+                        else:
+                            print("El cultivo no está listo para cosechar.")
+                    else:
+                        print("Posición no válida.")
 
             else:
                 print("Opción no válida")
             print("///MENÚ///")
-            print("Bienvenido al sistema de cultivo. Por favor, selecciona una opción:")
+            print("Bienvenido al sistema de cultivo.")
             print("1. Plantar un nuevo cultivo")
             print("2. Regar un cultivo")
-            print("3. Cosechar un cultivo")
-            print("4. Salir")
+            print("3. Fertilizar un cultivo")
+            print("4. Cosechar un cultivo")
+            print("5. Mostrar estado de cultivos")
+            print("6. Salir")
             opcion = int(input("Ingrese su opción: "))
 
         print("Saliendo del programa")
