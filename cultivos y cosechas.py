@@ -1,13 +1,33 @@
 import random
 
 class Crop:
+    # Diccionario para mantener un seguimiento del número de semillas disponibles por tipo de cultivo
     seeds_available = {
         "Manzana": 5,
         "Sandía": 3,
         "Zanahoria": 10,
         "Trigo": 15,
-        "Maíz": 12}
-    
+        "Maíz": 12
+    }
+
+    # Diccionario para mantener un seguimiento de la cantidad de fertilizantes por tipo de cultivo
+    fertilizers_available = {
+        "Manzana": 5,
+        "Sandía": 3,
+        "Zanahoria": 10,
+        "Trigo": 15,
+        "Maíz": 12
+    }
+
+    # Diccionario para mantener un seguimiento de la cantidad de tratamientos para curar plagas por tipo de cultivo
+    treatments_available = {
+        "Manzana": 5,
+        "Sandía": 3,
+        "Zanahoria": 10,
+        "Trigo": 15,
+        "Maíz": 12
+    }
+
     def __init__(self, name):
         self.name = name
         self.current_growth = 0
@@ -35,16 +55,22 @@ class Crop:
 
     # Fertilizar (Fertilize)
     def fertilize(self):
-        self.current_growth += 50
-        if self.current_growth <= 40:
-            self.state = "Brote"
-        elif 40 < self.current_growth < 100:
-            self.state = "Crecimiento"
-        elif self.current_growth >= 100 and self.has_plague == "not plague":
-            self.state = "Maduración"
-        elif self.current_growth >= 100 and self.has_plague == "plague":
-            self.state = "Plagas"
-        self.apply_plague()
+        # Verifica si hay fertilizantes disponibles para el tipo de cultivo
+        if self.fertilizers_available.get(self.name, 0) > 0:
+            self.current_growth += 50
+            self.fertilizers_available[self.name] -= 1
+            if self.current_growth <= 40:
+                self.state = "Brote"
+            elif 40 < self.current_growth < 100:
+                self.state = "Crecimiento"
+            elif self.current_growth >= 100 and self.has_plague == "not plague":
+                self.state = "Maduración"
+            elif self.current_growth >= 100 and self.has_plague == "plague":
+                self.state = "Plagas"
+            self.apply_plague()
+            print("Has fertilizado el cultivo de ",self.name)
+        else:
+            print("No quedan fertilizantes disponibles para el cultivo de ",self.name)
 
     # Cosechar (Harvest)
     def harvest(self):
@@ -59,6 +85,18 @@ class Crop:
             self.apply_plague()
             return False
 
+    # Curar las plagas
+    def cure_plague(self):
+        # Verifica si hay tratamientos disponibles para el tipo de cultivo
+        if self.treatments_available.get(self.name, 0) > 0:
+            self.has_plague = "not plague"
+            if self.current_growth >= 100:
+                self.state = "Maduración"
+            self.treatments_available[self.name] -= 1
+            print("Has curado las plagas en el cultivo de ", self.name)
+        else:
+            print("No quedan tratamientos disponibles para el cultivo de ",self.name)
+
     def plant_seed(cls, name):
         # Verifica si hay semillas disponibles para el tipo de cultivo
         if cls.seeds_available.get(name, 0) > 0:
@@ -66,12 +104,6 @@ class Crop:
             return True
         else:
             return False
-
-    # Curar las plagas
-    def cure_plague(self):
-        self.has_plague = "not plague"
-        if self.current_growth >= 100:
-            self.state = "Maduración"
 
 class Apple(Crop):
     def __init__(self):
@@ -173,7 +205,6 @@ class Menu:
                         crop = Corn()
 
                     self.soil.plant(crop)
-                    print("Has plantado un/una", crop.name)
                 else:
                     print("Opción no válida.")
 
@@ -185,7 +216,6 @@ class Menu:
                     position = int(input("Ingrese la posición del cultivo que desea regar: "))
                     if 0 <= position < len(self.soil.crops):
                         self.soil.water_crop(position)
-                        print("Has regado el cultivo en la posición ", position)
                     else:
                         print("Posición no válida.")
 
@@ -197,7 +227,6 @@ class Menu:
                     position = int(input("Ingrese la posición del cultivo que desea fertilizar: "))
                     if 0 <= position < len(self.soil.crops):
                         self.soil.fertilize_crop(position)
-                        print("Has fertilizado el cultivo en la posición ", position)
                     else:
                         print("Posición no válida.")
 
@@ -227,7 +256,6 @@ class Menu:
                     position = int(input("Ingrese la posición del cultivo que desea curar de plagas: "))
                     if 0 <= position < len(self.soil.crops):
                         self.soil.cure_crop(position)
-                        print("Has curado las plagas en el cultivo en la posición", position)
                     else:
                         print("Posición no válida.")
 
