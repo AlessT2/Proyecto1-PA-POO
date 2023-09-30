@@ -16,10 +16,10 @@ PIG = []
 COW = []
 SHEEP = []
 while True:
-    menu = input("*****Nombre del Juego*****\n"+"\033[1;38;2;223;174;52mA. Animales :)\033[1;0m\n" #Animales, encargado por Alessandro
+    menu = input("\033[1;38;2;202;255;6mFarm Family Programadors\033[1;0m\n"+"\033[1;38;2;223;174;52mA. Animales :)\033[1;0m\n" #Animales, encargado por Alessandro
                  "\033[1;38;2;104;255;6mB. Cultivos\033[1;0m\n" #Cultivos encargado por Lesther
                 "\033[1;38;2;255;54;0mC. Ti\033[1;0m" + "en" + "\033[1;38;2;255;54;0mda\033[0m\n" #Tienda encargado por Allan
-                 "Elija su opción: ")
+                 "\033[1;38;2;6;164;255mElija su opción: \033[1;0m\n")
     while menu == "A" or menu == "a":
         if menu == "A" or menu == "a":
             # snake_case para variables, funciones y métodos
