@@ -213,7 +213,7 @@ class Menu:
 
             else:
                 print("Opción no válida")
-            print("///MENÚ///")
+            print("\n///MENÚ///")
             print("Bienvenido al sistema de cultivo.")
             print("1. Plantar un nuevo cultivo")
             print("2. Regar un cultivo")
