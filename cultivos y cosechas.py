@@ -1,6 +1,13 @@
 import random
 
 class Crop:
+    seeds_available = {
+        "Manzana": 5,
+        "Sandía": 3,
+        "Zanahoria": 10,
+        "Trigo": 15,
+        "Maíz": 12}
+    
     def __init__(self, name):
         self.name = name
         self.current_growth = 0
@@ -52,6 +59,14 @@ class Crop:
             self.apply_plague()
             return False
 
+    def plant_seed(cls, name):
+        # Verifica si hay semillas disponibles para el tipo de cultivo
+        if cls.seeds_available.get(name, 0) > 0:
+            cls.seeds_available[name] -= 1
+            return True
+        else:
+            return False
+
     # Curar las plagas
     def cure_plague(self):
         self.has_plague = "not plague"
@@ -84,7 +99,12 @@ class Soil:
 
     # Plantar en suelo (Plant in soil)
     def plant(self, crop):
-        self.crops.append(crop)
+        # Verifica si hay semillas disponibles antes de plantar
+        if crop.plant_seed(crop.name):
+            self.crops.append(crop)
+            print("Has plantado un/una", crop.name)
+        else:
+            print("No quedan semillas disponibles para", crop.name)
 
     # Regar en suelo (Water in soil)
     def water_crop(self, position):
@@ -213,7 +233,7 @@ class Menu:
 
             else:
                 print("Opción no válida")
-            print("\n///MENÚ///")
+            print("///MENÚ///")
             print("Bienvenido al sistema de cultivo.")
             print("1. Plantar un nuevo cultivo")
             print("2. Regar un cultivo")
