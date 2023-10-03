@@ -5,7 +5,7 @@ inventory_5 = [0, "Vacas"];inventory_6 = [0, "Ovejas"];inventory_7 = [0, "Cerdos
 inventory_11 = [0, "Semillas de zanahora"];inventory_12 = [0, "Trigo"];inventory_13 = [0, "Maíz"]; inventory_5_1 = [0, "Leche"]; inventory_5_2 = [0, "Carne"]; inventory_5_3 = [0, "Piel"]; inventory_5_4 = [0, "Cuernos"]
 inventory_6_1 = [0, "Leche"]; inventory_6_2 = [0, "Carne"]; inventory_6_3 = [0, "Piel"]; inventory_6_4 = [0, "Lana"];inventory_7_1 = [0, "Leche"]; inventory_7_2 = [0, "Carne"]; inventory_7_3 = [0, "Piel"]
 inventory_14 = [0, "Manzanas"]; inventory_15 = [0, "Sandías"]; inventory_16 = [0, "Zanahorias"]; inventory_17 = [0, "Trigo"]; inventory_18 = [0, "Maíz"]
-BARN = [inventory_1, inventory_2, inventory_3, inventory_5, inventory_6, inventory_7, inventory_4,inventory_8,inventory_9,inventory_10, inventory_11, inventory_12, inventory_13]
+BARN = [inventory_1, inventory_2, inventory_3, inventory_5, inventory_6, inventory_7, inventory_4,inventory_8,inventory_9,inventory_10, inventory_11, inventory_12, inventory_13, inventory_14, inventory_15, inventory_16, inventory_17, inventory_18, inventory_5_1, inventory_5_2, inventory_5_3, inventory_5_4, inventory_6_1, inventory_6_2, inventory_6_3, inventory_6_4, inventory_7_1, inventory_7_2, inventory_7_3]
 GET_COW_FOOD = 0;GET_FOOD_SHEEP = 0;GET_PIG_FOOD = 0;GET_ANTI_PEST = 0;GET_COW = 0;GET_PIG = 0;GET_SHEEP = 0;GET_FERTILIZER = 0; GET_APPLE = 0; GET_MELON = 0; GET_CARROT = 0; GET_WHEAT = 0; GET_CORN = 0
 class Coin:
     def __init__(self, coin):
@@ -20,8 +20,9 @@ SHEEP = []
 while True:
     menu = input("\033[1;38;2;202;255;6mFarm The Best\033[1;0m\n"+"\033[1;38;2;223;174;52mA. Animales :)\033[1;0m\n" #Animales, encargado por Alessandro
                  "\033[1;38;2;104;255;6mB. Cultivos\033[1;0m\n" #Cultivos encargado por Lesther
-                "\033[1;38;2;255;54;0mC. Ti\033[1;0m" + "en" + "\033[1;38;2;255;54;0mda\033[0m\n" #Tienda encargado por Allan
-                 "\033[1;38;2;6;164;255mElija su opción: \033[1;0m")
+                "\033[1;38;2;255;54;0mC. Ti\033[1;0m" + "en" + "\033[1;38;2;255;54;0mda\033[0m\n" #Tienda encargado por Allan}
+                "\033[1;38;2;6;244;255mI. Inventario\033[1;0m\n"+"\033[1;38;2;6;164;255mElija su opción: \033[1;0m")
+
     while menu == "A" or menu == "a":
         if menu == "A" or menu == "a":
             # snake_case para variables, funciones y métodos
@@ -263,7 +264,7 @@ while True:
                         i.hunger += 10
                         i.healt -= 5
                         i.happiness -=5
-                    time.sleep(60)  # Esperar 2 segundos entre actualizaciones
+                    time.sleep(60)
 
 
             print("\033[1;38;2;255;164;6mAnimales  :)\033[0m")
@@ -1197,7 +1198,7 @@ while True:
                     while menu == "N" or menu == "n":
                         if menu == "N" or menu == "n":
                             print("\033[1;38;2;23;252;248mActualmente tienes:\033[0m", WALLET, "Monedas")
-                            LINE = 4
+                            LINE = 5
                             for i, objects in enumerate(BARN):
                                 if i % LINE == 0 and i != 0:
                                     print()
@@ -1206,9 +1207,17 @@ while True:
                         break
                 break
                 continue_end = input("\033[1;38;2;178;250;0m¿Desea seguir en la Tienda?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
-                if continue_end == "n" or continue_end == "N":
-                    print("\033[1;38;2;255;54;0mSaliendo de la Tienda...\033[0m\n")
-                    break
+    if menu == "i" or continue_end == "I":
+        while menu == "I" or menu == "i":
+            if menu == "I" or menu == "i":
+                print("\033[1;38;2;23;252;248mActualmente tienes:\033[0m", WALLET, "Monedas")
+                LINE = 5
+                for i, objects in enumerate(BARN):
+                    if i % LINE == 0 and i != 0:
+                        print()
+                    print(objects, end="\t")
+                print()
+            break
         continue_end = input("\033[1;38;2;218;206;35m¿Desea regresar al menú de inicio?\033[0;m\n" + "\033[1;32mS\033[0;m" + "/" + "\033[1;31mN: \033[0;m")
         if continue_end == "s" or continue_end == "S":
             print("\033[1;38;2;255;54;0mRegresando...\033[0m\n")
