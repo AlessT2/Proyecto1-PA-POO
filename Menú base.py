@@ -16,10 +16,10 @@ PIG = []
 COW = []
 SHEEP = []
 while True:
-    menu = input("\033[1;38;2;202;255;6mFarm Family Programadors\033[1;0m\n"+"\033[1;38;2;223;174;52mA. Animales :)\033[1;0m\n" #Animales, encargado por Alessandro
+    menu = input("\033[1;38;2;202;255;6mFarm The Best\033[1;0m\n"+"\033[1;38;2;223;174;52mA. Animales :)\033[1;0m\n" #Animales, encargado por Alessandro
                  "\033[1;38;2;104;255;6mB. Cultivos\033[1;0m\n" #Cultivos encargado por Lesther
                 "\033[1;38;2;255;54;0mC. Ti\033[1;0m" + "en" + "\033[1;38;2;255;54;0mda\033[0m\n" #Tienda encargado por Allan
-                 "\033[1;38;2;6;164;255mElija su opción: \033[1;0m\n")
+                 "\033[1;38;2;6;164;255mElija su opción: \033[1;0m")
     while menu == "A" or menu == "a":
         if menu == "A" or menu == "a":
             # snake_case para variables, funciones y métodos
@@ -709,7 +709,7 @@ while True:
         opcionB = "B"
     while menu == "C" or menu == "c": #**********Allan**********
         if menu == "C" or menu == "c":
-            optionE = input("\033[1;38;2;255;54;0mTi\033[1;0m" + "en" + "\033[1;38;2;255;54;0mda:\033[0m\n"+"\033[1;38;2;178;250;0mA. Comprar\033[0;m\n"+"B. Vender\n"+"Elija su opción: ")
+            optionE = input("\033[1;38;2;255;54;0mTi\033[1;0m" + "en" + "\033[1;38;2;255;54;0mda:\033[0m\n"+"\033[1;38;2;178;250;0mA. Comprar\033[0;m\n"+"\033[1;38;2;247;255;6mB. Vender: \033[1;0m\n"+"\033[1;38;2;6;164;255mElija su opción: \033[1;0m")
             while optionE == "A" or optionE == "a":
                 if optionE == "A" or optionE == "a":
                     print("\033[1;38;2;255;54;0mTi\033[1;0m" + "en" + "\033[1;38;2;255;54;0mda:\033[0m")
@@ -946,7 +946,222 @@ while True:
                 break
             while optionE == "B" or optionE == "b":
                 if optionE == "B" or optionE == "b":
-                    print("")
+                    print("\033[1;38;2;247;255;6mB. Vender: \033[1;0m\n")
+                    menu = input("\033[1;38;2;255;54;0mProductos \033[1;38;2;255;165;00m" + "para Vender:\033[0m\n"
+                    "\033[1;38;2;216;98;55mCompuesto para Vaca \033[0m\n" + "\033[1;38;2;51;214;243mB. Compuesto para Oveja \033[0;m\n" + "\033[1;38;2;209;0;255mC. Compuesto para Cerdo\033[0;m\n" + "\033[1;38;2;244;155;0mD. Vaca\033[0m\n"
+                    "\033[1;38;2;255;224;0mE. Oveja \033[0;m\n" + "\033[1;38;2;227;10;96mF. Cerdo\033[0;m\n" + "\033[1;38;2;180;255;71mG. Fertilizante\033[0;m\n" + "\033[1;38;2;255;185;71mH. Antiplagas\033[0;m\n"
+                    "\033[1;38;2;25;238;187mI. Semillas de manzana\033[0;m\n" + "\033[1;38;2;25;238;187mJ. Semillas de sandía\033[0;m\n" + "\033[1;38;2;25;238;187mK. Semillas de zanahoria\033[0;m\n"
+                    "\033[1;38;2;25;238;187mL. Trigo\033[0;m\n" + "\033[1;38;2;25;238;187mM. Maíz\033[0;m\n" + "\033[1;38;2;25;238;187mN. Granero\033[0;m\n"
+                    "\033[1;38;2;215;0;0mO. Salir de la tienda\033[0;m\n" + "\033[1;38;2;50;205;50mElija su opción: \033[0;m")
+                    while menu == "A" or menu == "a":
+                        if menu == "A" or menu == "a":
+                            COST = 7
+                            print("\033[1;38;2;216;98;55mCompuesto para Vaca; \033[0m" + "\033[1;38;2;254;214;90mGana $\033[0;m",COST)
+                            buy = input("\033[1;38;2;166;255;12m¿Desea Venderlo?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                            if buy == "s" or buy == "S":
+                                total = int(input("\033[1;38;2;233;255;12m¿Qué cantidad desea vender? \033[0;m"))
+                                price = total * COST
+                                if inventory_1[0] > 0:
+                                    WALLET = WALLET + price
+                                    print("\033[1;38;2;0;178;255mAhora tiene:\033[0m", WALLET, "Monedas")
+                                    GET_COW_FOOD = GET_COW_FOOD + total
+                                    inventory_1[0] = GET_COW_FOOD
+                                print("\033[1;38;2;203;68;0mNo tiene productos disponibles actualmente\033[0m")
+                        break
+                    while menu == "B" or menu == "b":
+                        if menu == "B" or menu == "b":
+                            COST = 7
+                            print("\033[1;38;2;216;98;55mCompuesto para Oveja; \033[0m" + "\033[1;38;2;254;214;90mGana $\033[0;m",COST)
+                            buy = input("\033[1;38;2;166;255;12m¿Desea Venderlo?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                            if buy == "s" or buy == "S":
+                                total = int(input("\033[1;38;2;233;255;12m¿Qué cantidad desea vender? \033[0;m"))
+                                price = total * COST
+                                if inventory_2[0] > 0:
+                                    WALLET = WALLET + price
+                                    print("\033[1;38;2;0;178;255mAhora tiene:\033[0m", WALLET, "Monedas")
+                                    GET_FOOD_SHEEP = GET_FOOD_SHEEP + total
+                                    inventory_2[0] = GET_FOOD_SHEEP
+                                print("\033[1;38;2;203;68;0mNo tiene productos disponibles actualmente\033[0m")
+                        break
+                    while menu == "C" or menu == "c":
+                        if menu == "C" or menu == "c":
+                            COST = 7
+                            print("\033[1;38;2;216;98;55mCompuesto para Cerdo; \033[0m" + "\033[1;38;2;254;214;90mGana $\033[0;m",COST)
+                            buy = input("\033[1;38;2;166;255;12m¿Desea Venderlo?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                            if buy == "s" or buy == "S":
+                                total = int(input("\033[1;38;2;233;255;12m¿Qué cantidad desea vender? \033[0;m"))
+                                price = total * COST
+                                if inventory_3[0] > 0:
+                                    WALLET = WALLET + price
+                                    print("\033[1;38;2;0;178;255mAhora tiene:\033[0m", WALLET, "Monedas")
+                                    GET_PIG_FOOD = GET_PIG_FOOD + total
+                                    inventory_3[0] = GET_PIG_FOOD
+                                print("\033[1;38;2;203;68;0mNo tiene productos disponibles actualmente\033[0m")
+                        break
+                    while menu == "D" or menu == "d":
+                        if menu == "D" or menu == "d":
+                            COST = 7
+                            print("\033[1;38;2;216;98;55mAntiplagas; \033[0m" + "\033[1;38;2;254;214;90mGana $\033[0;m",COST)
+                            buy = input("\033[1;38;2;166;255;12m¿Desea Venderlo?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                            if buy == "s" or buy == "S":
+                                total = int(input("\033[1;38;2;233;255;12m¿Qué cantidad desea vender? \033[0;m"))
+                                price = total * COST
+                                if inventory_4[0] > 0:
+                                    WALLET = WALLET + price
+                                    print("\033[1;38;2;0;178;255mAhora tiene:\033[0m", WALLET, "Monedas")
+                                    GET_ANTI_PEST = GET_ANTI_PEST + total
+                                    inventory_4[0] = GET_ANTI_PEST
+                                print("\033[1;38;2;203;68;0mNo tiene productos disponibles actualmente\033[0m")
+                        break
+                    while menu == "E" or menu == "e":
+                        if menu == "E" or menu == "e":
+                            COST = 7
+                            print("\033[1;38;2;216;98;55mVacas; \033[0m" + "\033[1;38;2;254;214;90mGana $\033[0;m",COST)
+                            buy = input("\033[1;38;2;166;255;12m¿Desea Venderlo?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                            if buy == "s" or buy == "S":
+                                total = int(input("\033[1;38;2;233;255;12m¿Qué cantidad desea vender? \033[0;m"))
+                                price = total * COST
+                                if inventory_5[0] > 0:
+                                    WALLET = WALLET + price
+                                    print("\033[1;38;2;0;178;255mAhora tiene:\033[0m", WALLET, "Monedas")
+                                    GET_COW = GET_COW + total
+                                    inventory_5[0] = GET_COW
+                                print("\033[1;38;2;203;68;0mNo tiene productos disponibles actualmente\033[0m")
+                        break
+                    while menu == "F" or menu == "f":
+                        if menu == "F" or menu == "f":
+                            COST = 7
+                            print("\033[1;38;2;216;98;55mOvejas; \033[0m" + "\033[1;38;2;254;214;90mGana $\033[0;m",COST)
+                            buy = input("\033[1;38;2;166;255;12m¿Desea Venderlo?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                            if buy == "s" or buy == "S":
+                                total = int(input("\033[1;38;2;233;255;12m¿Qué cantidad desea vender? \033[0;m"))
+                                price = total * COST
+                                if inventory_6[0] > 0:
+                                    WALLET = WALLET + price
+                                    print("\033[1;38;2;0;178;255mAhora tiene:\033[0m", WALLET, "Monedas")
+                                    GET_SHEEP = GET_SHEEP + total
+                                    inventory_6[0] = GET_SHEEP
+                                print("\033[1;38;2;203;68;0mNo tiene productos disponibles actualmente\033[0m")
+                        break
+                    while menu == "G" or menu == "g":
+                        if menu == "G" or menu == "g":
+                            COST = 7
+                            print("\033[1;38;2;216;98;55mCerdos; \033[0m" + "\033[1;38;2;254;214;90mGana $\033[0;m",COST)
+                            buy = input("\033[1;38;2;166;255;12m¿Desea Venderlo?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                            if buy == "s" or buy == "S":
+                                total = int(input("\033[1;38;2;233;255;12m¿Qué cantidad desea vender? \033[0;m"))
+                                price = total * COST
+                                if inventory_7[0] > 0:
+                                    WALLET = WALLET + price
+                                    print("\033[1;38;2;0;178;255mAhora tiene:\033[0m", WALLET, "Monedas")
+                                    GET_PIG = GET_PIG + total
+                                    inventory_7[0] = GET_PIG
+                                print("\033[1;38;2;203;68;0mNo tiene productos disponibles actualmente\033[0m")
+                        break
+                    while menu == "H" or menu == "h":
+                        if menu == "H" or menu == "h":
+                            COST = 5
+                            print("\033[1;38;2;216;98;55mFertilizantes; \033[0m" + "\033[1;38;2;254;214;90mGana $\033[0;m",COST)
+                            buy = input("\033[1;38;2;166;255;12m¿Desea Venderlo?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                            if buy == "s" or buy == "S":
+                                total = int(input("\033[1;38;2;233;255;12m¿Qué cantidad desea vender? \033[0;m"))
+                                price = total * COST
+                                if inventory_8[0] > 0:
+                                    WALLET = WALLET + price
+                                    print("\033[1;38;2;0;178;255mAhora tiene:\033[0m", WALLET, "Monedas")
+                                    GET_FERTILIZER = GET_FERTILIZER + total
+                                    inventory_8[0] = GET_FERTILIZER
+                                print("\033[1;38;2;203;68;0mNo tiene productos disponibles actualmente\033[0m")
+                        break
+                    while menu == "I" or menu == "i":
+                        if menu == "I" or menu == "i":
+                            COST = 5
+                            print("\033[1;38;2;216;98;55mManzanas; \033[0m" + "\033[1;38;2;254;214;90mGana $\033[0;m",COST)
+                            buy = input("\033[1;38;2;166;255;12m¿Desea Venderlo?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                            if buy == "s" or buy == "S":
+                                total = int(input("\033[1;38;2;233;255;12m¿Qué cantidad desea vender? \033[0;m"))
+                                price = total * COST
+                                if inventory_9[0] > 0:
+                                    WALLET = WALLET + price
+                                    print("\033[1;38;2;0;178;255mAhora tiene:\033[0m", WALLET, "Monedas")
+                                    GET_APPLE = GET_APPLE + total
+                                    inventory_9[0] = GET_APPLE
+                                print("\033[1;38;2;203;68;0mNo tiene productos disponibles actualmente\033[0m")
+                        break
+                    while menu == "J" or menu == "j":
+                        if menu == "J" or menu == "j":
+                            COST = 5
+                            print("\033[1;38;2;216;98;55mSandías; \033[0m" + "\033[1;38;2;254;214;90mGana $\033[0;m",COST)
+                            buy = input("\033[1;38;2;166;255;12m¿Desea Venderlo?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                            if buy == "s" or buy == "S":
+                                total = int(input("\033[1;38;2;233;255;12m¿Qué cantidad desea vender? \033[0;m"))
+                                price = total * COST
+                                if inventory_10[0] > 0:
+                                    WALLET = WALLET + price
+                                    print("\033[1;38;2;0;178;255mAhora tiene:\033[0m", WALLET, "Monedas")
+                                    GET_MELON = GET_MELON + total
+                                    inventory_10[0] = GET_MELON
+                                print("\033[1;38;2;203;68;0mNo tiene productos disponibles actualmente\033[0m")
+                        break
+                    while menu == "K" or menu == "k":
+                        if menu == "K" or menu == "k":
+                            COST = 5
+                            print("\033[1;38;2;216;98;55mZanahorias; \033[0m" + "\033[1;38;2;254;214;90mGana $\033[0;m",COST)
+                            buy = input("\033[1;38;2;166;255;12m¿Desea Venderlo?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                            if buy == "s" or buy == "S":
+                                total = int(input("\033[1;38;2;233;255;12m¿Qué cantidad desea vender? \033[0;m"))
+                                price = total * COST
+                                if inventory_11[0] > 0:
+                                    WALLET = WALLET + price
+                                    print("\033[1;38;2;0;178;255mAhora tiene:\033[0m", WALLET, "Monedas")
+                                    GET_CARROT = GET_CARROT + total
+                                    inventory_11[0] = GET_CARROT
+                                print("\033[1;38;2;203;68;0mNo tiene productos disponibles actualmente\033[0m")
+                        break
+                    while menu == "L" or menu == "l":
+                        if menu == "L" or menu == "l":
+                            COST = 4
+                            print("\033[1;38;2;216;98;55mTrigos; \033[0m" + "\033[1;38;2;254;214;90mGana $\033[0;m",COST)
+                            buy = input("\033[1;38;2;166;255;12m¿Desea Venderlo?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                            if buy == "s" or buy == "S":
+                                total = int(input("\033[1;38;2;233;255;12m¿Qué cantidad desea vender? \033[0;m"))
+                                price = total * COST
+                                if inventory_12[0] > 0:
+                                    WALLET = WALLET + price
+                                    print("\033[1;38;2;0;178;255mAhora tiene:\033[0m", WALLET, "Monedas")
+                                    GET_WHEAT = GET_WHEAT + total
+                                    inventory_12[0] = GET_WHEAT
+                                print("\033[1;38;2;203;68;0mNo tiene productos disponibles actualmente\033[0m")
+                        break
+                    while menu == "M" or menu == "m":
+                        if menu == "M" or menu == "m":
+                            COST = 5
+                            print("\033[1;38;2;216;98;55mMaíz; \033[0m" + "\033[1;38;2;254;214;90mGana $\033[0;m",COST)
+                            buy = input("\033[1;38;2;166;255;12m¿Desea Venderlo?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                            if buy == "s" or buy == "S":
+                                total = int(input("\033[1;38;2;233;255;12m¿Qué cantidad desea vender? \033[0;m"))
+                                price = total * COST
+                                if inventory_13[0] > 0:
+                                    WALLET = WALLET + price
+                                    print("\033[1;38;2;0;178;255mAhora tiene:\033[0m", WALLET, "Monedas")
+                                    GET_CORN = GET_CORN + total
+                                    inventory_13[0] = GET_CORN
+                                print("\033[1;38;2;203;68;0mNo tiene productos disponibles actualmente\033[0m")
+                        break
+                    while menu == "N" or menu == "n":
+                        if menu == "N" or menu == "n":
+                            print("\033[1;38;2;23;252;248mActualmente tienes:\033[0m", WALLET, "Monedas")
+                            LINE = 4
+                            for i, objects in enumerate(BARN):
+                                if i % LINE == 0 and i != 0:
+                                    print()
+                                print(objects, end="\t")
+                            print()
+                        break
+                break
+            continue_end = input("\033[1;38;2;178;250;0m¿Desea seguir en la Tienda?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+            if continue_end == "n" or continue_end == "N":
+                print("\033[1;38;2;255;54;0mSaliendo de la Tienda...\033[0m\n")
                 break
         continue_end = input("\033[1;38;2;218;206;35m¿Desea regresar al menú de inicio?\033[0;m\n" + "\033[1;32mS\033[0;m" + "/" + "\033[1;31mN: \033[0;m")
         if continue_end == "s" or continue_end == "S":
