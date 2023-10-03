@@ -47,27 +47,27 @@ while True:
                     feed_animal = int(input("Ingrese con que desea alimentar a su animal: "))
                     if feed_animal >= 1 and feed_animal <= 5:
                         if feed_animal == 1:
-                            if inventory_14[0] > 0:
+                            if inventory_9[0] > 0:
                                 self.hunger -= 30
                                 print(f"El hambre de su animal {self.number} ahora es: ", self.hunger)
                             print("No tiene alimentos de manzana")
                         if feed_animal == 2:
-                            if inventory_15[0] > 0:
+                            if inventory_10[0] > 0:
                                 self.hunger -= 30
                                 print(f"El hambre de su animal {self.number} ahora es: ", self.hunger)
                             print("No tiene alimentos de sandía")
                         if feed_animal == 3:
-                            if inventory_16[0] > 0:
+                            if inventory_11[0] > 0:
                                 self.hunger -= 30
                                 print(f"El hambre de su animal {self.number} ahora es: ", self.hunger)
                             print("No tiene alimentos de zanahoria")
                         if feed_animal == 4:
-                            if inventory_17[0] > 0:
+                            if inventory_12[0] > 0:
                                 self.hunger -= 30
                                 print(f"El hambre de su animal {self.number} ahora es: ", self.hunger)
                             print("No tiene alimentos de Trigo")
                         if feed_animal == 5:
-                            if inventory_18[0] > 0:
+                            if inventory_13[0] > 0:
                                 self.hunger -= 30
                                 print(f"El hambre de su animal {self.number} ahora es: ", self.hunger)
                             print("No tiene alimentos de maíz")
@@ -477,11 +477,11 @@ while True:
             import random
             class Crop:
                 seeds_available = {
-                    "Manzana": inventory_14[0],
-                    "Sandía": inventory_15[0],
-                    "Zanahoria": inventory_16[0],
-                    "Trigo": inventory_17[0],
-                    "Maíz": inventory_18[0]}
+                    "Manzana": inventory_9[0],
+                    "Sandía": inventory_10[0],
+                    "Zanahoria": inventory_11[0],
+                    "Trigo": inventory_12[0],
+                    "Maíz": inventory_13[0]}
                 fertilizers_available = {
                     "Manzana": inventory_8[0],
                     "Sandía": inventory_8[0],
