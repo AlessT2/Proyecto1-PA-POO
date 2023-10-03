@@ -2,7 +2,9 @@ import time
 import threading
 inventory_1 = [0, "Compuesto para Vaca"];inventory_2 = [0, "Compuesto para Oveja"];inventory_3 = [0, "Compuesto para Cerdo"];inventory_4 = [0, "Antiplagas"] #INICIA*****ALLAN
 inventory_5 = [0, "Vacas"];inventory_6 = [0, "Ovejas"];inventory_7 = [0, "Cerdos"];inventory_8 = [0, "Fertilizantes"];inventory_9 = [0, "Semillas de Manzanas"];inventory_10 = [0, "Semillas deSandías"]
-inventory_11 = [0, "Semillas de zanahora"];inventory_12 = [0, "Trigo"];inventory_13 = [0, "Maíz"]
+inventory_11 = [0, "Semillas de zanahora"];inventory_12 = [0, "Trigo"];inventory_13 = [0, "Maíz"]; inventory_5_1 = [0, "Leche"]; inventory_5_2 = [0, "Carne"]; inventory_5_3 = [0, "Piel"]; inventory_5_4 = [0, "Cuernos"]
+inventory_6_1 = [0, "Leche"]; inventory_6_2 = [0, "Carne"]; inventory_6_3 = [0, "Piel"]; inventory_6_4 = [0, "Lana"];inventory_7_1 = [0, "Leche"]; inventory_7_2 = [0, "Carne"]; inventory_7_3 = [0, "Piel"]
+inventory_14 = [0, "Manzanas"]; inventory_15 = [0, "Sandías"]; inventory_16 = [0, "Zanahorias"]; inventory_17 = [0, "Trigo"]; inventory_18 = [0, "Maíz"]
 BARN = [inventory_1, inventory_2, inventory_3, inventory_5, inventory_6, inventory_7, inventory_4,inventory_8,inventory_9,inventory_10, inventory_11, inventory_12, inventory_13]
 GET_COW_FOOD = 0;GET_FOOD_SHEEP = 0;GET_PIG_FOOD = 0;GET_ANTI_PEST = 0;GET_COW = 0;GET_PIG = 0;GET_SHEEP = 0;GET_FERTILIZER = 0; GET_APPLE = 0; GET_MELON = 0; GET_CARROT = 0; GET_WHEAT = 0; GET_CORN = 0
 class Coin:
@@ -43,8 +45,31 @@ while True:
                     print("5. Maíz")
                     feed_animal = int(input("Ingrese con que desea alimentar a su animal: "))
                     if feed_animal >= 1 and feed_animal <= 5:
-                        self.hunger -= 30
-                        print(f"El hambre de su animal {self.number} ahora es: ", self.hunger)
+                        if feed_animal == 1:
+                            if inventory_14[0] > 0:
+                                self.hunger -= 30
+                                print(f"El hambre de su animal {self.number} ahora es: ", self.hunger)
+                            print("No tiene alimentos de manzana")
+                        if feed_animal == 2:
+                            if inventory_15[0] > 0:
+                                self.hunger -= 30
+                                print(f"El hambre de su animal {self.number} ahora es: ", self.hunger)
+                            print("No tiene alimentos de sandía")
+                        if feed_animal == 3:
+                            if inventory_16[0] > 0:
+                                self.hunger -= 30
+                                print(f"El hambre de su animal {self.number} ahora es: ", self.hunger)
+                            print("No tiene alimentos de zanahoria")
+                        if feed_animal == 4:
+                            if inventory_17[0] > 0:
+                                self.hunger -= 30
+                                print(f"El hambre de su animal {self.number} ahora es: ", self.hunger)
+                            print("No tiene alimentos de Trigo")
+                        if feed_animal == 5:
+                            if inventory_18[0] > 0:
+                                self.hunger -= 30
+                                print(f"El hambre de su animal {self.number} ahora es: ", self.hunger)
+                            print("No tiene alimentos de maíz")
                     else:
                         print(f"El hambre de su animal {self.number} es: ", self.hunger)
 
@@ -78,12 +103,16 @@ while True:
                     print(f"la felicidad de su cerdo {self.number} es: ", self.happiness)
                     print(f"El hambre de su cerdo {self.number} es: ", self.hunger)
                     self.breeding = int(input("Ingrese cuantas crias ha tenido su cerdo: "))
+                    inventory_7[0] += self.breeding
                     self.milk = int(input(f"Ingrese cuantos litros de leche ha producido su cerdo: "))
+                    inventory_7_1[0] += self.milk
                     self.meat = int(input(f"Ingrese cuantas libras de carne puede generar su cerdo: "))
+                    inventory_7_2[0] += self.meat
                     self.fur = int(input(f"Ingrese cuantas m^2 de piel puede generar su cerdo: "))
+                    inventory_7_3[0] += self.meat
 
                 def data_entry_return(self):
-                    return self.healt, self.happiness, self.hunger, self.breeding, self.milk, self.meat, self.fur
+                    return "Vida:",self.healt, "Felicidad:",self.happiness, "Hambre:",self.hunger, "Crías:",self.breeding, "Leche",self.milk, "Carne",self.meat, "Piel",self.fur
 
                 def collect_resources(self):
                     print("Recursos disponibles: ")
@@ -95,24 +124,27 @@ while True:
                     if collect == 1:
                         collet_breeding = int(input("Ingrese cuantas crias desea recoger: "))
                         self.breeding -= collet_breeding
-                        print("Ahora tiene ", self.breeding, " crias")
+                        inventory_7[0] -= self.breeding
+                        print("Ahora tiene ", inventory_7[0], " crias")
                     elif collect == 2:
                         collect_milk = int(input("Ingrese cuantos litros de leche desea recoger: "))
                         self.milk -= collect_milk
+                        inventory_7_1[0] -= self.milk
                         print("Ahora tiene ", self.milk, " litros de leche disponibles")
                     elif collect == 3:
                         collect_meat = int(input("Ingrese cuentas libras de carne desea recoger: "))
                         self.meat -= collect_meat
+                        inventory_7_2[0] -= self.meat
                         print("Ahora tiene ", self.meat, " libras de carne disponibles")
                     elif collect == 4:
                         collect_fur = int(input("Ingrese cuantos metros^2 de piel desea recoger: "))
                         self.fur -= collect_fur
+                        inventory_7_3[0] -= self.fur
                         print("Ahora tiene ", self.fur, " metros^2 de piel disponibles")
 
 
             class Cows(AnimalCare):
-                def __init__(self, number, healt=50, happiness=50, hunger=50, breeding=0, milk=0, meat=0, fur=0,
-                             horns=0):
+                def __init__(self, number, healt=50, happiness=50, hunger=50, breeding=0, milk=0, meat=0, fur=0,horns=0):
                     super().__init__(healt, happiness, hunger, breeding, milk)
                     self.meat = meat
                     self.fur = fur
@@ -124,13 +156,18 @@ while True:
                     print(f"la felicidad de su vaca {self.number} es: ", self.happiness)
                     print(f"El hambre de su vaca {self.number} es: ", self.hunger)
                     self.breeding = int(input("Ingrese cuantas crias ha tenido su vaca: "))
+                    inventory_5[0] += self.breeding
                     self.milk = int(input("Ingrese cuantos litros de leche ha producido su vaca: "))
+                    inventory_5_1[0] += self.milk
                     self.meat = int(input("Ingrese cuantas libras de carne puede generar su vaca: "))
+                    inventory_5_2[0] += self.meat
                     self.fur = int(input("Ingrese cuantas m^2 de piel puede generar su vaca: "))
+                    inventory_5_3[0] += self.fur
                     self.horns = int(input("Ingrese cuantos cuernos de vaca tiene: "))
+                    inventory_5_4[0] += self.horns
 
                 def data_entry_return(self):
-                    return "vida:", self.healt, "Felicidad", self.happiness, "Hambre:", self.hunger, "Crías", self.breeding, "Leche:", self.milk, "Carne:", self.meat, "Pelage:", self.fur, "Cuernos:", self.horns
+                    return "vida:", self.healt, "Felicidad:", self.happiness, "Hambre:", self.hunger, "Crías", self.breeding, "Leche:", self.milk, "Carne:", self.meat, "Pelage:", self.fur, "Cuernos:", self.horns
 
                 def collect_resources(self):
                     print("Recursos disponibles: ")
@@ -143,22 +180,27 @@ while True:
                     if collect == 1:
                         collet_breeding = int(input("Ingrese cuantas crias desea recoger: "))
                         self.breeding -= collet_breeding
-                        print("Ahora tiene ", self.breeding, " crias")
+                        inventory_5[0] -= self.breeding
+                        print("Ahora tiene ", inventory_5[0], " crias")
                     elif collect == 2:
                         collect_milk = int(input("Ingrese cuantos litros de leche desea recoger: "))
                         self.milk -= collect_milk
+                        inventory_5_1[0] -= self.milk
                         print("Ahora tiene ", self.milk, " litros de leche disponibles")
                     elif collect == 3:
                         collect_meat = int(input("Ingrese cuentas libras de carne desea recoger: "))
                         self.meat -= collect_meat
+                        inventory_5_1[0] -= self.meat
                         print("Ahora tiene ", self.meat, " libras de carne disponibles")
                     elif collect == 4:
                         collect_fur = int(input("Ingrese cuantos metros^2 de piel desea recoger: "))
                         self.fur -= collect_fur
+                        inventory_5_1[0] -= self.fur
                         print("Ahora tiene ", self.fur, " metros^2 de piel disponibles ")
                     elif collect == 5:
                         collect_horns = int(input("Ingrese cuantos cuernos desea recoger: "))
                         self.horns -= collect_horns
+                        inventory_5_1[0] -= self.horns
                         print("Ahora tiene ", self.horns, " cuenros a disposicion")
 
 
@@ -170,16 +212,17 @@ while True:
                     self.number = number
 
                 def data_entry(self):
-                    print(f"La salud de su {self.number} oveja es: ", self.healt)
-                    print(f"la felicidad de su {self.number} oveja es: ", self.happiness)
-                    print(f"El hambre de su {self.number} oveja es: ", self.hunger)
+                    print(f"La salud de su oveja {self.number} es: ", self.healt)
+                    print(f"la felicidad de su oveja {self.number} es: ", self.happiness)
+                    print(f"El hambre de su oveja {self.number} es: ", self.hunger)
                     self.breeding = int(input("Ingrese cuantas crias ha tenido su oveja: "))
+                    inventory_6[0] += self.breeding
                     self.milk = int(input("Ingrese cuantos litros de leche ha producido su oveja: "))
                     self.meat = int(input("Ingrese cuantas libras de carne puede generar su oveja: "))
                     self.fur = int(input("Ingrese la cantidad de libras de lana que puede generar su oveja "))
 
                 def data_entry_return(self):
-                    return self.healt, self.happiness, self.hunger, self.breeding, self.milk, self.meat, self.fur
+                    return "Vida:",self.healt, "Felicidad:",self.happiness, "Hambre:",self.hunger, "Crías:",self.breeding, "Leche:",self.milk, "Carne",self.meat, "Piel",self.fur
 
                 def collect_resources(self):
                     print("Recursos disponibles: ")
@@ -192,25 +235,28 @@ while True:
                     if collect == 1:
                         collet_breeding = int(input("Ingrese cuantas crias desea recoger: "))
                         self.breeding -= collet_breeding
-                        print("Ahora tiene ", self.breeding, " crias")
+                        inventory_6[0] -= self.breeding
+                        print("Ahora tiene ", inventory_6[0], " crias")
                     elif collect == 2:
                         collect_milk = int(input("Ingrese cuantos litros de leche desea recoger: "))
                         self.milk -= collect_milk
+                        inventory_6_1[0] -= self.milk
                         print("Ahora tiene ", self.milk, " litros de leche disponibles")
                     elif collect == 3:
                         collect_meat = int(input("Ingrese cuantas libras de carne desea recoger: "))
                         self.meat -= collect_meat
+                        inventory_6_2[0] -= self.meat
                         print("Ahora tiene ", self.meat, " libras de carne disponibles")
                     elif collect == 4:
                         collect_fur = int(input("Ingrese cuantos metros^2 de piel desea recoger: "))
                         self.fur -= collect_fur
-                        print("Ahora tiene ", self.fur, " metros^2 de piel disponivles ")
+                        inventory_6_3[0] -= self.fur
+                        print("Ahora tiene ", self.fur, " metros^2 de piel disponibles ")
                     elif collect == 5:
                         collect_wool = int(input("Ingrese cuantas libras de lana desea recoger: "))
                         self.wool -= collect_wool
+                        inventory_6_4[0] -= self.wool
                         print("Ahora tiene ", self.wool, " libras de lana disponibles")
-
-
             def pasar_tiempo(y):
                 while True:
                     for i in y:
@@ -430,11 +476,11 @@ while True:
             import random
             class Crop:
                 seeds_available = {
-                    "Manzana": inventory_9[0],
-                    "Sandía": inventory_10[0],
-                    "Zanahoria": inventory_11[0],
-                    "Trigo": inventory_12[0],
-                    "Maíz": inventory_13[0]}
+                    "Manzana": inventory_14[0],
+                    "Sandía": inventory_15[0],
+                    "Zanahoria": inventory_16[0],
+                    "Trigo": inventory_17[0],
+                    "Maíz": inventory_18[0]}
                 fertilizers_available = {
                     "Manzana": inventory_8[0],
                     "Sandía": inventory_8[0],
@@ -702,11 +748,11 @@ while True:
 
             menu1 = Menu()
             menu1.menu()
-        Continuar = input("¿Desea continuar con el programa?" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
-        if Continuar == "n" or Continuar == "N":
-            print("Regresando...")
-            break
-        opcionB = "B"
+            Continuar = input("¿Desea continuar con el programa?" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+            if Continuar == "n" or Continuar == "N":
+                print("Regresando...")
+                break
+            opcionB = "B"
     while menu == "C" or menu == "c": #**********Allan**********
         if menu == "C" or menu == "c":
             optionE = input("\033[1;38;2;255;54;0mTi\033[1;0m" + "en" + "\033[1;38;2;255;54;0mda:\033[0m\n"+"\033[1;38;2;178;250;0mA. Comprar\033[0;m\n"+"\033[1;38;2;247;255;6mB. Vender: \033[1;0m\n"+"\033[1;38;2;6;164;255mElija su opción: \033[1;0m")
@@ -715,12 +761,12 @@ while True:
                     print("\033[1;38;2;255;54;0mTi\033[1;0m" + "en" + "\033[1;38;2;255;54;0mda:\033[0m")
                     while True:
                         print("\033[1;38;2;23;252;248mActualmente tienes:\033[0m", WALLET, "Monedas")
-                        menu = input("\033[1;38;2;255;54;0mProductos \033[1;38;2;255;165;00m" + "disponibles:\033[0m\n"+"\033[1;38;2;255;240;1mA. Compuesto para Vaca\033[0m\n"
-                        "\033[1;38;2;51;214;243mB. Compuesto para Oveja \033[0;m\n"+"\033[1;38;2;209;0;255mC. Compuesto para Cerdo\033[0;m\n" + "\033[1;38;2;244;155;0mD. Vaca\033[0m\n"
-                        "\033[1;38;2;255;224;0mE. Oveja \033[0;m\n" + "\033[1;38;2;227;10;96mF. Cerdo\033[0;m\n"+"\033[1;38;2;180;255;71mG. Fertilizante\033[0;m\n" + "\033[1;38;2;255;185;71mH. Antiplagas\033[0;m\n"
-                        "\033[1;38;2;25;238;187mI. Semillas de manzana\033[0;m\n" + "\033[1;38;2;25;238;187mJ. Semillas de sandía\033[0;m\n" + "\033[1;38;2;25;238;187mK. Semillas de zanahoria\033[0;m\n"
-                        "\033[1;38;2;25;238;187mL. Trigo\033[0;m\n" + "\033[1;38;2;25;238;187mM. Maíz\033[0;m\n" +"\033[1;38;2;25;238;187mN. Granero\033[0;m\n"
-                        "\033[1;38;2;215;0;0mO. Salir de la tienda\033[0;m\n"+"\033[1;38;2;50;205;50mElija su opción: \033[0;m")
+                        menu = input("\033[1;38;2;255;54;0mProductos \033[1;38;2;255;165;00m" + "disponibles:\033[0m\n"+"\033[1;38;2;255;240;1mA. Compuesto para Vaca   \033[0m"
+                        "\033[1;38;2;216;98;55mCompuesto para Vaca   \033[0m" + "\033[1;38;2;51;214;243mB. Compuesto para Oveja     \033[0;m" + "\033[1;38;2;209;0;255mC. Compuesto para Cerdo    \033[0;m" + "\033[1;38;2;244;155;0mD. Vaca    \033[0m"
+                    "\033[1;38;2;255;224;0mE. Oveja     \033[0;m" + "\033[1;38;2;255;6;210mF. Cerdo\033[0;m\n" + "\033[1;38;2;180;255;71mG. Fertilizante    \033[0;m" + "\033[1;38;2;255;185;71mH. Antiplagas   \033[0;m"
+                    "\033[1;38;2;255;6;93mI. Semillas de manzana  \033[0;m" + "\033[1;38;2;25;238;187mJ. Semillas de sandía   \033[0;m" + "\033[1;38;2;153;6;255mK. Semillas de zanahoria\033[0;m\n"
+                    "\033[1;38;2;6;157;255mL. Trigo    \033[0;m" + "\033[1;38;2;78;255;6mM. Maíz     \033[0;m" + "\033[1;38;2;6;255;217mN. Granero\033[0;m\n"
+                    "\033[1;38;2;215;0;0mO. Salir de la tienda\033[0;m\n" + "\033[1;38;2;50;205;50mElija su opción: \033[0;m")
                         while menu == "A" or menu == "a":
                             if menu == "A" or menu == "a":
                                 COST = 5
@@ -948,10 +994,10 @@ while True:
                 if optionE == "B" or optionE == "b":
                     print("\033[1;38;2;247;255;6mB. Vender: \033[1;0m\n")
                     menu = input("\033[1;38;2;255;54;0mProductos \033[1;38;2;255;165;00m" + "para Vender:\033[0m\n"
-                    "\033[1;38;2;216;98;55mCompuesto para Vaca \033[0m\n" + "\033[1;38;2;51;214;243mB. Compuesto para Oveja \033[0;m\n" + "\033[1;38;2;209;0;255mC. Compuesto para Cerdo\033[0;m\n" + "\033[1;38;2;244;155;0mD. Vaca\033[0m\n"
-                    "\033[1;38;2;255;224;0mE. Oveja \033[0;m\n" + "\033[1;38;2;227;10;96mF. Cerdo\033[0;m\n" + "\033[1;38;2;180;255;71mG. Fertilizante\033[0;m\n" + "\033[1;38;2;255;185;71mH. Antiplagas\033[0;m\n"
-                    "\033[1;38;2;25;238;187mI. Semillas de manzana\033[0;m\n" + "\033[1;38;2;25;238;187mJ. Semillas de sandía\033[0;m\n" + "\033[1;38;2;25;238;187mK. Semillas de zanahoria\033[0;m\n"
-                    "\033[1;38;2;25;238;187mL. Trigo\033[0;m\n" + "\033[1;38;2;25;238;187mM. Maíz\033[0;m\n" + "\033[1;38;2;25;238;187mN. Granero\033[0;m\n"
+                    "\033[1;38;2;216;98;55mCompuesto para Vaca   \033[0m" + "\033[1;38;2;51;214;243mB. Compuesto para Oveja     \033[0;m" + "\033[1;38;2;209;0;255mC. Compuesto para Cerdo    \033[0;m" + "\033[1;38;2;244;155;0mD. Vaca    \033[0m"
+                    "\033[1;38;2;255;224;0mE. Oveja     \033[0;m" + "\033[1;38;2;255;6;210mF. Cerdo\033[0;m\n" + "\033[1;38;2;180;255;71mG. Fertilizante    \033[0;m" + "\033[1;38;2;255;185;71mH. Antiplagas   \033[0;m"
+                    "\033[1;38;2;255;6;93mI. Semillas de manzana  \033[0;m" + "\033[1;38;2;25;238;187mJ. Semillas de sandía   \033[0;m" + "\033[1;38;2;153;6;255mK. Semillas de zanahoria\033[0;m\n"
+                    "\033[1;38;2;6;157;255mL. Trigo    \033[0;m" + "\033[1;38;2;78;255;6mM. Maíz     \033[0;m" + "\033[1;38;2;6;255;217mN. Granero\033[0;m\n"
                     "\033[1;38;2;215;0;0mO. Salir de la tienda\033[0;m\n" + "\033[1;38;2;50;205;50mElija su opción: \033[0;m")
                     while menu == "A" or menu == "a":
                         if menu == "A" or menu == "a":
@@ -1159,10 +1205,10 @@ while True:
                             print()
                         break
                 break
-            continue_end = input("\033[1;38;2;178;250;0m¿Desea seguir en la Tienda?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
-            if continue_end == "n" or continue_end == "N":
-                print("\033[1;38;2;255;54;0mSaliendo de la Tienda...\033[0m\n")
-                break
+                continue_end = input("\033[1;38;2;178;250;0m¿Desea seguir en la Tienda?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                if continue_end == "n" or continue_end == "N":
+                    print("\033[1;38;2;255;54;0mSaliendo de la Tienda...\033[0m\n")
+                    break
         continue_end = input("\033[1;38;2;218;206;35m¿Desea regresar al menú de inicio?\033[0;m\n" + "\033[1;32mS\033[0;m" + "/" + "\033[1;31mN: \033[0;m")
         if continue_end == "s" or continue_end == "S":
             print("\033[1;38;2;255;54;0mRegresando...\033[0m\n")
