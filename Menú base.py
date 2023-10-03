@@ -477,11 +477,11 @@ while True:
             import random
             class Crop:
                 seeds_available = {
-                    "Manzana": inventory_14[0],
-                    "Sandía": inventory_15[0],
-                    "Zanahoria": inventory_16[0],
-                    "Trigo": inventory_17[0],
-                    "Maíz": inventory_18[0]}
+                    "Manzana": inventory_9[0],
+                    "Sandía": inventory_10[0],
+                    "Zanahoria": inventory_11[0],
+                    "Trigo": inventory_12[0],
+                    "Maíz": inventory_13[0]}
                 fertilizers_available = {
                     "Manzana": inventory_8[0],
                     "Sandía": inventory_8[0],
