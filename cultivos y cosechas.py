@@ -1,4 +1,4 @@
-import random
+            import random
             class Crop:
                 seeds_available = {
                     "Manzana": inventory_9[0],
@@ -151,6 +151,7 @@ import random
             class Menu:
                 def __init__(self):
                     self.soil = Soil()
+                    self.ready_crops = []
 
                 def crop_type(self):
                     print("///Tipos de cultivos///")
@@ -167,6 +168,16 @@ import random
                         print("Cultivos en el suelo:")
                         position = 0
                         for crop in self.soil.crops:
+                            print(position, ".", crop.name, "- Estado:", crop.state)
+                            position += 1
+                    
+                def show_harvested_crops(self):
+                    if len(self.ready_crops) == 0:
+                        print("No hay cultivos cosechados.")
+                    else:
+                        print("Cultivos cosechados:")
+                        position = 0
+                        for crop in self.ready_crops:
                             print(position, ".", crop.name, "- Estado:", crop.state)
                             position += 1
 
@@ -234,6 +245,7 @@ import random
                                 if 0 <= position < len(self.soil.crops):
                                     if self.soil.harvest_crop(position):
                                         print("Has cosechado el cultivo en la posición", position)
+                                        self.ready_crops.append(crop)
                                         del self.soil.crops[position]
                                     else:
                                         print("El cultivo no está listo para cosechar.")
@@ -242,6 +254,7 @@ import random
 
                         elif option == 5:
                             self.show_crops()
+                            self.show_harvested_crops()
 
                         elif option == 6:
                             if len(self.soil.crops) == 0:
