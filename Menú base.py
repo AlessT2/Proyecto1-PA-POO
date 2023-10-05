@@ -588,22 +588,22 @@ while True:
                     print(f"La salud de su oveja {self.number} es: ", self.healt)
                     print(f"la felicidad de su oveja {self.number} es: ", self.happiness)
                     print(f"El hambre de su oveja {self.number} es: ", self.hunger)
-                    self.breeding = int(input("Ingrese cuantas crias ha tenido su oveja: "))
+                    self.breeding = int(input("\033[1;38;2;243;255;0mIngrese cuantas crias ha tenido su oveja:  \033[1;0m"))
                     inventory_6[0] += self.breeding
-                    self.milk = int(input("Ingrese cuantos litros de leche ha producido su oveja: "))
-                    self.meat = int(input("Ingrese cuantas libras de carne puede generar su oveja: "))
-                    self.fur = int(input("Ingrese la cantidad de libras de lana que puede generar su oveja "))
+                    self.milk = int(input("\033[1;38;2;255;0;135mIngrese cuantos litros de leche ha producido su oveja: \033[1;0m"))
+                    self.meat = int(input("\033[1;38;2;0;209;255mIngrese cuantas libras de carne puede generar su oveja: \033[1;0m"))
+                    self.fur = int(input("\033[1;38;2;0;201;255mIngrese la cantidad de libras de lana que puede generar su oveja  \033[1;0m"))
 
                 def data_entry_return(self):
                     return "Vida:",self.healt, "Felicidad:",self.happiness, "Hambre:",self.hunger, "Crías:",self.breeding, "Leche:",self.milk, "Carne",self.meat, "Piel",self.fur
 
                 def collect_resources(self):
-                    print("Recursos disponibles: ")
-                    print("1. Su animal tiene ", self.breeding, " crias")
-                    print("2. Su animal ha producido ", self.milk, " litros de leche")
-                    print("3. Su animal puede generar ", self.meat, " libras de carne")
-                    print("4. Su animal puede gener", self.fur, " metros^2 de piel")
-                    print("5. Tiene en posecion ", self.wool, " libras de lana")
+                    print("\033[1;38;2;202;255;6mRecursos disponibles \033[1;0m")
+                    print("\033[1;38;2;243;255;0m1. Su animal tiene \033[1;0m", self.breeding, " crias")
+                    print("\033[1;38;2;255;0;135m2. Su animal ha producido \033[1;0m", self.milk, " litros de leche")
+                    print("\033[1;38;2;0;209;255m3. Su animal puede generar \033[1;0m", self.meat, " libras de carne")
+                    print("\033[1;38;2;255;178;0m4. Su animal puede generar \033[1;0m", self.fur, " metros^2 de piel")
+                    print("\033[1;38;2;0;201;255m5. Tiene en posecion  \033[1;0m", self.wool, " libras de lana")
                     collect = int(input("Ingrese que desea recoger: "))
                     if collect == 1:
                         collet_breeding = int(input("Ingrese cuantas crias desea recoger: "))
@@ -847,6 +847,8 @@ while True:
     while menu == "B" or menu == "b":
         if menu == "B" or menu == "b":
             import random
+
+
             class Crop:
                 seeds_available = {
                     "Manzana": inventory_9[0],
@@ -906,9 +908,9 @@ while True:
                         elif self.current_growth >= 100 and self.has_plague == "plague":
                             self.state = "Plagas"
                         self.apply_plague()
-                        print("Has fertilizado el cultivo de ",self.name)
+                        print("Has fertilizado el cultivo de ", self.name)
                     else:
-                        print("No quedan fertilizantes disponibles para el cultivo de ",self.name)
+                        print("No quedan fertilizantes disponibles para el cultivo de ", self.name)
 
                 # Cosechar (Harvest)
                 def harvest(self):
@@ -924,7 +926,6 @@ while True:
                         return False
 
                 def plant_seed(cls, name):
-                    # Verifica si hay semillas disponibles para el tipo de cultivo
                     if cls.seeds_available.get(name, 0) > 0:
                         cls.seeds_available[name] -= 1
                         return True
@@ -938,9 +939,10 @@ while True:
                         if self.current_growth >= 100:
                             self.state = "Maduración"
                         self.treatments_available[self.name] -= 1
-                        print("Has curado las plagas en el cultivo de",self.name)
+                        print("Has curado las plagas en el cultivo de", self.name)
                     else:
-                        print("No quedan tratamientos disponibles para el cultivo de ",self.name)
+                        print("No quedan tratamientos disponibles para el cultivo de ", self.name)
+
 
             class Apple(Crop):
                 def __init__(self):
@@ -1000,14 +1002,13 @@ while True:
             class Menu:
                 def __init__(self):
                     self.soil = Soil()
+                    self.ready_crops = []
 
                 def crop_type(self):
-                    print("///Tipos de cultivos///")
-                    print("1. Manzana")  # Apple
-                    print("2. Sandía")  # Watermelon
-                    print("3. Zanahoria")  # Carrot
-                    print("4. Trigo")  # Wheat
-                    print("5. Maíz")  # Corn
+                    print("\033[1;38;2;202;255;6m                   ///Tipos de cultivos///\033[1;0m")
+                    print("\033[1;38;2;178;2;2m1. Manzana     \033[1;0m" + "\033[1;38;2;2;178;39m2. Sandía     \033[1;0m" +  # Apple # Watermelon
+                    "\033[1;38;2;255;170;0m3. Zanahoria     \033[1;0m" + "\033[1;38;2;255;228;0m4. Trigo     \033[1;0m" +  # Carrot  # Wheat
+                    "\033[1;38;2;209;255;0m5. Maíz     \033[1;0m")  # Corn
 
                 def show_crops(self):
                     if len(self.soil.crops) == 0:
@@ -1019,17 +1020,23 @@ while True:
                             print(position, ".", crop.name, "- Estado:", crop.state)
                             position += 1
 
+                def show_harvested_crops(self):
+                    if len(self.ready_crops) == 0:
+                        print("No hay cultivos cosechados.")
+                    else:
+                        print("Cultivos cosechados:")
+                        position = 0
+                        for crop in self.ready_crops:
+                            print(position, ".", crop.name, "- Estado:", crop.state)
+                            position += 1
+
                 def menu(self):
-                    print("///MENÚ///")
-                    print("Bienvenido al sistema de cultivo.")
-                    print("1. Plantar un nuevo cultivo")
-                    print("2. Regar un cultivo")
-                    print("3. Fertilizar un cultivo")
-                    print("4. Cosechar un cultivo")
-                    print("5. Mostrar estado de cultivos")
-                    print("6. Curar plagas en un cultivo")
-                    print("7. Salir")
-                    option = int(input("Ingrese su opción: "))
+                    print("\033[1;38;2;202;255;6m                   ///MENÚ///\033[1;0m")
+                    print("\033[1;38;2;255;220;0mBienvenido al sistema de cultivo:\033[1;0m")
+                    print("\033[1;38;2;66;255;0m1. Plantar un nuevo cultivo     \033[1;0m"+"\033[1;38;2;0;255;247m2. Regar un cultivo       \033[1;0m"+"\033[1;38;2;255;0;104m3. Fertilizar un cultivo\033[1;0m")
+                    print("\033[1;38;2;255;255;0m4. Cosechar un cultivo         \033[1;0m"+"\033[1;38;2;161;96;7m5. Mostrar estado de cultivos      \033[1;0m"+"\033[1;38;2;255;0;209m6. Curar plagas en un cultivo\033[1;0m")
+                    print("\033[1;38;2;193;0;255m7. Salir\033[1;0m")
+                    option = int(input("\033[1;38;2;202;255;6mIngrese su opción: \033[1;0m"))
                     while option != 7:
 
                         if option == 1:
@@ -1083,6 +1090,7 @@ while True:
                                 if 0 <= position < len(self.soil.crops):
                                     if self.soil.harvest_crop(position):
                                         print("Has cosechado el cultivo en la posición", position)
+                                        self.ready_crops.append(crop)
                                         del self.soil.crops[position]
                                     else:
                                         print("El cultivo no está listo para cosechar.")
@@ -1091,6 +1099,7 @@ while True:
 
                         elif option == 5:
                             self.show_crops()
+                            self.show_harvested_crops()
 
                         elif option == 6:
                             if len(self.soil.crops) == 0:
@@ -1105,23 +1114,21 @@ while True:
 
                         else:
                             print("Opción no válida")
-                        print("///MENÚ///")
-                        print("Bienvenido al sistema de cultivo.")
-                        print("1. Plantar un nuevo cultivo")
-                        print("2. Regar un cultivo")
-                        print("3. Fertilizar un cultivo")
-                        print("4. Cosechar un cultivo")
-                        print("5. Mostrar estado de cultivos")
-                        print("6. Curar plagas en un cultivo")
-                        print("7. Salir")
-                        option = int(input("Ingrese su opción: "))
+                        print("\033[1;38;2;202;255;6m                   ///MENÚ///\033[1;0m")
+                        print("\033[1;38;2;255;220;0mBienvenido al sistema de cultivo:\033[1;0m")
+                        print(
+                            "\033[1;38;2;66;255;0m1. Plantar un nuevo cultivo     \033[1;0m" + "\033[1;38;2;0;255;247m2. Regar un cultivo       \033[1;0m" + "\033[1;38;2;255;0;104m3. Fertilizar un cultivo\033[1;0m")
+                        print(
+                            "\033[1;38;2;255;255;0m4. Cosechar un cultivo         \033[1;0m" + "\033[1;38;2;161;96;7m5. Mostrar estado de cultivos      \033[1;0m" + "\033[1;38;2;255;0;209m6. Curar plagas en un cultivo\033[1;0m")
+                        print("\033[1;38;2;193;0;255m7. Salir\033[1;0m")
+                        option = int(input("\033[1;38;2;202;255;6mIngrese su opción: \033[1;0m"))
 
-                    print("Saliendo del programa")
+                    print("\033[1;38;2;178;2;2mSaliendo del programa\033[1;0m")
 
 
             menu1 = Menu()
             menu1.menu()
-            Continuar = input("¿Desea continuar con el programa?" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+            Continuar = input("\033[1;38;2;2;178;141m¿Desea continuar con el programa? \033[1;0m" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
             if Continuar == "n" or Continuar == "N":
                 print("Regresando...")
                 break
@@ -1161,31 +1168,31 @@ while True:
                         while product == "D" or product == "d":
                             if product == "D" or product == "d":
                                 if __name__ == "__main__":
-                                    get_product5 = Product4("", "", "", "", "", "", WALLET)
+                                    get_product5 = Product5("", "", "", "", "", "", WALLET)
                                     get_product5.Result()
                             break
                         while product == "E" or product == "e":
                             if product == "E" or product == "e":
                                 if __name__ == "__main__":
-                                    get_product6 = Product5("", "", "", "", "", "", WALLET)
+                                    get_product6 = Product6("", "", "", "", "", "", WALLET)
                                     get_product6.Result()
                             break
                         while product == "F" or product == "f":
                             if product == "F" or product == "f":
                                 if __name__ == "__main__":
-                                    get_product7 = Product6("", "", "", "", "", "", WALLET)
+                                    get_product7 = Product7("", "", "", "", "", "", WALLET)
                                     get_product7.Result()
                             break
                         while product == "G" or product == "g":
                             if product == "G" or product == "g":
                                 if __name__ == "__main__":
-                                    get_product8 = Product7("", "", "", "", "", "", WALLET)
+                                    get_product8 = Product8("", "", "", "", "", "", WALLET)
                                     get_product8.Result()
                             break
                         while product == "H" or product == "h":
                             if product == "H" or product == "h":
                                 if __name__ == "__main__":
-                                    get_product4 = Product8("", "", "", "", "", "", WALLET)
+                                    get_product4 = Product4("", "", "", "", "", "", WALLET)
                                     get_product4.Result()
                             break
                         while product == "I" or product == "i":
@@ -1228,8 +1235,7 @@ while True:
                                     print(objects, end="\t")
                                 print()
                             break
-                        continue_end = input(
-                            "\033[1;38;2;178;250;0m¿Desea seguir en la Tienda?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                        continue_end = input("\033[1;38;2;178;250;0m¿Desea seguir en la Tienda?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
                         if continue_end == "n" or continue_end == "N":
                             print("\033[1;38;2;255;54;0mSaliendo de la Tienda...\033[0m\n")
                             break
@@ -1333,21 +1339,24 @@ while True:
                                     print(objects, end="\t")
                                 print()
                             break
+                        continue_end = input("\033[1;38;2;178;250;0m¿Desea seguir en la Tienda?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
+                        if continue_end == "n" or continue_end == "N":
+                            print("\033[1;38;2;255;54;0mSaliendo de la Tienda...\033[0m\n")
+                            break
+                    break
+            continue_end = input("\033[1;38;2;218;206;35m¿Desea regresar al menú de inicio?\033[0;m\n" + "\033[1;32mS\033[0;m" + "/" + "\033[1;31mN: \033[0;m")
+            if continue_end == "s" or continue_end == "S":
+                print("\033[1;38;2;255;54;0mRegresando...\033[0m\n")
                 break
-                continue_end = input("\033[1;38;2;178;250;0m¿Desea seguir en la Tienda?\033[0;m\n" + "\033[1;32m" + "S" + "\033[0;m" + "/" + "\033[1;31m" + "N: " + "\033[0;m")
-    if menu == "i" or continue_end == "I":
-        while menu == "I" or menu == "i":
-            if menu == "I" or menu == "i":
-                print("\033[1;38;2;23;252;248mActualmente tienes:\033[0m", WALLET, "Monedas")
-                LINE = 5
-                for i, objects in enumerate(BARN):
-                    if i % LINE == 0 and i != 0:
-                        print()
-                    print(objects, end="\t")
-                print()
+            menu = "E"
             break
-        continue_end = input("\033[1;38;2;218;206;35m¿Desea regresar al menú de inicio?\033[0;m\n" + "\033[1;32mS\033[0;m" + "/" + "\033[1;31mN: \033[0;m")
-        if continue_end == "s" or continue_end == "S":
-            print("\033[1;38;2;255;54;0mRegresando...\033[0m\n")
-            break
-        menu = "E"
+    while menu == "I" or menu == "i":
+        if menu == "I" or menu == "i":
+            print("\033[1;38;2;23;252;248mActualmente tienes:\033[0m", WALLET, "Monedas")
+            LINE = 5
+            for i, objects in enumerate(BARN):
+                if i % LINE == 0 and i != 0:
+                    print()
+                print(objects, end="\t")
+            print()
+        break
