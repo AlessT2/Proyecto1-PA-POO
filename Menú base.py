@@ -5,7 +5,7 @@ inventory_5 = [0, "Vacas"];inventory_6 = [0, "Ovejas"];inventory_7 = [0, "Cerdos
 inventory_11 = [0, "Semillas de zanahora"];inventory_12 = [0, "Trigo"];inventory_13 = [0, "Maíz"]; inventory_5_1 = [0, "Leche de vaca"]; inventory_5_2 = [0, "Carne de vaca"]; inventory_5_3 = [0, "Piel de vaca"]; inventory_5_4 = [0, "Cuernos de vaca"]
 inventory_6_1 = [0, "Leche de oveja"]; inventory_6_2 = [0, "Carne de oveja"]; inventory_6_3 = [0, "Lana de oveja"];inventory_7_1 = [0, "Leche de cerdo"]; inventory_7_2 = [0, "Carne de cerdo"]; inventory_7_3 = [0, "Piel de cerdo"]
 inventory_14 = [0, "Manzanas"]; inventory_15 = [0, "Sandías"]; inventory_16 = [0, "Zanahorias"]; inventory_17 = [0, "Trigo"]; inventory_18 = [0, "Maíz"]
-BARN = [inventory_1, inventory_2, inventory_3, inventory_5, inventory_6, inventory_7, inventory_4,inventory_8,inventory_9,inventory_10, inventory_11, inventory_12, inventory_13, inventory_14, inventory_15, inventory_16, inventory_17, inventory_18, inventory_5_1, inventory_5_2, inventory_5_3, inventory_5_4, inventory_6_1, inventory_6_2, inventory_6_3, inventory_6_4, inventory_7_1, inventory_7_2, inventory_7_3]
+BARN = [inventory_1, inventory_2, inventory_3, inventory_5, inventory_6, inventory_7, inventory_4,inventory_8,inventory_9,inventory_10, inventory_11, inventory_12, inventory_13, inventory_14, inventory_15, inventory_16, inventory_17, inventory_18, inventory_5_1, inventory_5_2, inventory_5_3, inventory_5_4, inventory_6_1, inventory_6_2, inventory_6_3, inventory_7_1, inventory_7_2, inventory_7_3]
 GET_COW_FOOD = 0;GET_FOOD_SHEEP = 0;GET_PIG_FOOD = 0;GET_ANTI_PEST = 0;GET_COW = 0;GET_PIG = 0;GET_SHEEP = 0;GET_FERTILIZER = 0; GET_APPLE = 0; GET_MELON = 0; GET_CARROT = 0; GET_WHEAT = 0; GET_CORN = 0
 class Coin:
     def __init__(self, coin):
@@ -496,13 +496,13 @@ while True:
                     print(f"\033[1;38;2;54;255;0mLa salud de su cerdo {self.number} es: \033[1;0m", self.healt)
                     print(f"\033[1;38;2;0;197;255mLa felicidad de su cerdo {self.number} es: \033[1;0m", self.happiness)
                     print(f"\033[1;38;2;255;162;0mEl hambre de su cerdo {self.number} es: \033[1;0m", self.hunger)
-                    self.breeding = int(input("Ingrese cuantas crias ha tenido su cerdo: "))
+                    self.breeding = int(input(f"\033[1;38;2;243;255;0mIngrese cuantas crias ha tenido su cerdo {self.number}:  \033[1;0m"))
                     inventory_7[0] += self.breeding
-                    self.milk = int(input(f"Ingrese cuantos litros de leche ha producido su cerdo: "))
+                    self.milk = int(input(f"\033[1;38;2;255;0;135mIngrese cuantos litros de leche ha producido su cerdo {self.number}: \033[1;0m"))
                     inventory_7_1[0] += self.milk
-                    self.meat = int(input(f"Ingrese cuantas libras de carne puede generar su cerdo: "))
+                    self.meat = int(input(f"\033[1;38;2;0;209;255mIngrese cuantas libras de carne puede generar su cerdo {self.number}: \033[1;0m"))
                     inventory_7_2[0] += self.meat
-                    self.fur = int(input(f"Ingrese cuantas m^2 de piel puede generar su cerdo: "))
+                    self.fur = int(input(f"\033[1;38;2;0;201;255mIngrese cuantas m^2 de piel puede generar su cerdo {self.number}:   \033[1;0m"))
                     inventory_7_3[0] += self.meat
 
                 def data_entry_return(self):
@@ -615,8 +615,9 @@ while True:
                     inventory_6_1[0] += self.milk
                     self.meat = int(input("\033[1;38;2;0;209;255mIngrese cuantas libras de carne puede generar su oveja: \033[1;0m"))
                     inventory_6_2[0] += self.meat
-                    self.fur = int(input("\033[1;38;2;0;201;255mIngrese la cantidad de libras de lana que puede generar su oveja  \033[1;0m"))
+                    self.fur = int(input("\033[1;38;2;0;201;255mIngrese la cantidad m2 de carne que puede generar su oveja  \033[1;0m"))
                     inventory_6_3[0] += self.fur
+
                 def data_entry_return(self):
                     return "Vida:",self.healt, "Felicidad:",self.happiness, "Hambre:",self.hunger, "Crías:",self.breeding, "Leche:",self.milk, "Carne",self.meat, "Piel",self.fur
 
@@ -648,11 +649,7 @@ while True:
                         self.fur -= collect_fur
                         inventory_6_3[0] -= self.fur
                         print("Ahora tiene ", self.fur, " metros^2 de piel disponibles ")
-                    elif collect == 5:
-                        collect_wool = int(input("Ingrese cuantas libras de lana desea recoger: "))
-                        self.wool -= collect_wool
-                        inventory_6_4[0] -= self.wool
-                        print("Ahora tiene ", self.wool, " libras de lana disponibles")
+
             def pasar_tiempo(y):
                 while True:
                     for i in y:
